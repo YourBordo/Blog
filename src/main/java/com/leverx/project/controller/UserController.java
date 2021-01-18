@@ -2,7 +2,6 @@ package com.leverx.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import com.leverx.project.entity.User;
 import com.leverx.project.service.UserService;
 

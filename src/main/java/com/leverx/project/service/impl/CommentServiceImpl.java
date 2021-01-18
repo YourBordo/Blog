@@ -13,14 +13,15 @@ import java.util.List;
 @Component
 public class CommentServiceImpl implements CommentService {
 
-    @Autowired
-    private CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
+    private final UserRepository userRepository;
+    private final ArticleRepository articleRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ArticleRepository articleRepository;
+    public CommentServiceImpl(CommentRepository commentRepository, UserRepository userRepository, ArticleRepository articleRepository) {
+        this.commentRepository = commentRepository;
+        this.userRepository = userRepository;
+        this.articleRepository = articleRepository;
+    }
 
     @Override
     public List<Comment> findByUserId(long id) {

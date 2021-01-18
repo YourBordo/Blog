@@ -3,6 +3,7 @@ package com.leverx.project.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.leverx.project.entity.enums.ArticleStatus;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,7 +28,8 @@ public class Article {
     private String updatedAt;
 
     @Column(name = "article_status")
-    private String articleStatus;
+    @Enumerated(EnumType.STRING)
+    private ArticleStatus articleStatus;
 
     @JsonManagedReference(value = "comment-article")
     @OneToMany(mappedBy = "article")
@@ -111,11 +113,11 @@ public class Article {
         this.updatedAt = updatedAt;
     }
 
-    public String getArticleStatus() {
+    public ArticleStatus getArticleStatus() {
         return articleStatus;
     }
 
-    public void setArticleStatus(String articleStatus) {
+    public void setArticleStatus(ArticleStatus articleStatus) {
         this.articleStatus = articleStatus;
     }
 }
