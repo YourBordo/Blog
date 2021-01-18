@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface ArticleRepository extends CrudRepository<Article, Long> {
     List<Article> findAll();
-    void deleteById(long id);
+    Article deleteById(long id);
+    Article findById(long id);
 }

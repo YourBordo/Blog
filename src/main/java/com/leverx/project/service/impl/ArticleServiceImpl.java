@@ -20,7 +20,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void delete(long id) {
-        articleRepository.deleteById(id);
+    public Article delete(long id) {
+       return articleRepository.deleteById(id);
     }
 }

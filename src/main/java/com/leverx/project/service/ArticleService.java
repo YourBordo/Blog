@@ -7,5 +7,5 @@ import java.util.List;
 @Component
 public interface ArticleService {
     List<Article> find();
-    void  delete(long id);
+    Article  delete(long id);
 }

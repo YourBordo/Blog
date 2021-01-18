@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 public class Article {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
@@ -37,7 +38,12 @@ public class Article {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(mappedBy = "articles")
+    @ManyToMany()
+    @JoinTable(
+            name = "article_tag",
+            joinColumns = @JoinColumn(name = "article_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id")
+    )
     @JsonIgnore
     private List<Tag> tags;
 

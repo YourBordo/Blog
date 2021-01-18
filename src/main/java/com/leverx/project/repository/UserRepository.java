@@ -8,5 +8,6 @@ import com.leverx.project.entity.User;
 @Repository
 public interface UserRepository  extends CrudRepository<User, Long> {
     User findByFirstName(String firstName);
+    User findById(long id);
 
 }

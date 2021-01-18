@@ -1,27 +1,25 @@
 package com.leverx.project.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Tag {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
+
     @Column(name = "tag_name")
     private String tagName;
 
-    @ManyToMany
-    @JoinTable(
-            name = "article_tag",
-            joinColumns = @JoinColumn(name = "article_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id")
-    )
+    @ManyToMany(mappedBy = "tags")
     @JsonIgnore
     private List<Article> articles;
-
 
     public List<Article> getArticles() {
         return articles;

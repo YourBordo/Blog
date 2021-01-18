@@ -18,4 +18,19 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findByFirstName(firstName);
     }
+
+    @Override
+    public void delete(long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public User add(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User find(long id) {
+        return userRepository.findById(id);
+    }
 }

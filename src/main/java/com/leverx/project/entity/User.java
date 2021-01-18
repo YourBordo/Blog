@@ -2,15 +2,13 @@ package com.leverx.project.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
@@ -26,19 +24,11 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @JsonManagedReference(value="comment-user")
+    @JsonManagedReference(value = "comment-user")
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 
-    public List<Article> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
-    }
-
-    @JsonManagedReference(value="article-user")
+    @JsonManagedReference(value = "article-user")
     @OneToMany(mappedBy = "user")
     private List<Article> articles;
 
@@ -48,6 +38,14 @@ public class User {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 
     public long getId() {

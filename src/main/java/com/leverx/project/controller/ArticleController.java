@@ -21,10 +21,11 @@ public class ArticleController {
         return articleService.find();
     }
 
-    //TODO deleting with relation manyToMany
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteArticle(@PathVariable(name = "id") long id) {
-        articleService.delete(id);//????
+    public Article deleteArticle(@PathVariable(name = "id") long id) {
+        return articleService.delete(id);
     }
 
+    //PUT update article, POST new article (includes add tag)
 }
