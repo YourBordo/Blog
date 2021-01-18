@@ -8,4 +8,9 @@ import java.util.List;
 public interface ArticleService {
     List<Article> find();
     Article  delete(long id);
+    Article find(long id);
+    List<Article> findByUserId(long id);
+    List<Article> findByTagId(long id);
+    Article update(Article article);
+    Article add(Article article);
 }

@@ -11,4 +11,6 @@ public interface ArticleRepository extends CrudRepository<Article, Long> {
     List<Article> findAll();
     Article deleteById(long id);
     Article findById(long id);
+
+
 }

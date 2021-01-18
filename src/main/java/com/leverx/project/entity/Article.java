@@ -29,23 +29,31 @@ public class Article {
     @Column(name = "article_status")
     private String articleStatus;
 
-    @JsonManagedReference(value="comment-article")
+    @JsonManagedReference(value = "comment-article")
     @OneToMany(mappedBy = "article")
     private List<Comment> comments;
 
-    @JsonBackReference(value="article-user")
+    @JsonBackReference(value = "article-user")
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "article_tag",
             joinColumns = @JoinColumn(name = "article_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id")
     )
-    @JsonIgnore
+    //@JsonIgnore
     private List<Tag> tags;
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
 
     public User getUser() {
         return user;
