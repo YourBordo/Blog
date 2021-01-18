@@ -16,13 +16,13 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
-    ArticleRepository articleRepository;
+    private ArticleRepository articleRepository;
 
     @Autowired
-    TagRepository tagRepository;
+    private TagRepository tagRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public List<Article> find() {

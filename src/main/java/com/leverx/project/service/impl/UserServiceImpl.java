@@ -11,7 +11,7 @@ import com.leverx.project.repository.UserRepository;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public User find(String firstName) {
