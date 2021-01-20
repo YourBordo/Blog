@@ -1,8 +1,13 @@
-<div>id {{article.id}}</div>
-<div >title {{article.title}}</div>
-<div>text {{article.articleText}}</div>
-<ng-container *ngIf="comments">
-  <ng-container *ngFor="let comment of article.comments">
-    {{comment.message}}
+ARTICLE
+<ng-container *ngIf="article">
+  <div>author {{article.user.firstName}} {{article.user.lastName}}</div>
+  <div>title {{article.title}}</div>
+  <div>text {{article.articleText}}</div>
+  <ng-container *ngIf="comments">
+    <ng-container *ngFor="let comment of article.comments">
+      user: {{comment.user.firstName}} {{comment.user.lastName}}
+      comment: {{comment.message}}
+    </ng-container>
   </ng-container>
+
 </ng-container>

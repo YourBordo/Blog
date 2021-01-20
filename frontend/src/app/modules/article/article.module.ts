@@ -2,6 +2,7 @@ import {ArticleComponent} from "./components/article.component";
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {BrowserModule} from "@angular/platform-browser";
+import {ArticleService} from "../../services/article.service";
 
 @NgModule({
   declarations: [
@@ -11,7 +12,7 @@ import {BrowserModule} from "@angular/platform-browser";
     CommonModule,
     BrowserModule
   ],
-  providers: [],
+  providers: [ArticleService],
   exports: [ArticleComponent]
 })
 export class ArticleModule {}

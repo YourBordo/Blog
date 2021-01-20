@@ -22,12 +22,12 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public List<Comment> findCommentByUserId(@PathVariable(name = "id") long id) {
+    public List<Comment> findCommentsByUserId(@PathVariable(name = "id") long id) {
         return commentService.findByUserId(id);
     }
 
     @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
-    public List<Comment> findCommentByArticleId(@PathVariable(name = "id") long id) {
+    public List<Comment> findCommentsByArticleId(@PathVariable(name = "id") long id) {
         return commentService.findByArticleId(id);
     }
 

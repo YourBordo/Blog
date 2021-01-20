@@ -6,14 +6,13 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Comment} from "../../../models/comment";
 
 @Component({
-  selector: 'app-article',
+  selector: 'article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.css']
 })
 
 export class ArticleComponent implements OnInit {
   public article: Article;
-  public user: User;
   public comments: Comment[];
   constructor(private articleService: ArticleService,
               private route: ActivatedRoute,
