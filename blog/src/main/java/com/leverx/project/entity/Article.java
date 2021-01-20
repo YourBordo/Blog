@@ -36,7 +36,7 @@ public class Article {
     private List<Comment> comments;
 
     @JsonBackReference(value = "article-user")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
 

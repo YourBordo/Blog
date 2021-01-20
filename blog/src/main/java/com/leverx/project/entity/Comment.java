@@ -19,12 +19,12 @@ public class Comment {
     private String createdAt;
 
     @JsonBackReference(value="comment-article")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "article_id")
     private Article article;
 
     @JsonBackReference(value="comment-user")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
 

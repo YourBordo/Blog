@@ -1,0 +1,8 @@
+<div>id {{article.id}}</div>
+<div >title {{article.title}}</div>
+<div>text {{article.articleText}}</div>
+<ng-container *ngIf="comments">
+  <ng-container *ngFor="let comment of article.comments">
+    {{comment.message}}
+  </ng-container>
+</ng-container>
