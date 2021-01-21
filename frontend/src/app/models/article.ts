@@ -9,22 +9,21 @@ export class Article {
   createdAt: string;
   updatedAt: string;
   status: ArticleStatus;
-  user: User = new User();
   tags: Tag[];
   comments: Comment[];
+  user: User = new User();
 
   constructor(id?: number, title?: string, text?: string,
               createdAt?: string, updatedAt?: string, status?: ArticleStatus,
-              user?: User, tags?: Tag[], comments?: Comment[]) {
+              tags?: Tag[], comments?: Comment[], user?: User) {
     this.id = id;
     this.title = title;
     this.articleText = text;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.status = status;
-    this.user = user;
     this.tags = tags;
     this.comments = comments;
-
+    this.user = user;
   }
 }

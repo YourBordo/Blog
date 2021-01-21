@@ -25,15 +25,15 @@ import {SearchComponent} from "./modules/search/components/search.component";
 import {WallComponent} from "./modules/wall/components/wall.component";
 import {NotFoundModule} from "./modules/not-found/not-found.module";
 import {NotFoundComponent} from "./modules/not-found/components/not-found.component";
-import {ArticleService} from "./services/article.service";
+import {CommentsModule} from "./modules/comments/comments.module";
 
 const appRoutes: Routes =[
-  { path: 'article', component: ArticleComponent},
-  { path: 'article/redact', component: ArticleRedactionComponent},
+  { path: 'article/:id', component: ArticleComponent},
+  { path: 'article/:id/redact', component: ArticleRedactionComponent},
   { path: 'enter', component: EnterComponent },
   { path: 'forgot', component: ForgotPasswordComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile/:id', component: ProfileComponent},
   { path: 'registration', component: RegistrationComponent},
   { path: 'search', component: SearchComponent},
   { path: 'wall', component: WallComponent},
@@ -58,6 +58,7 @@ const appRoutes: Routes =[
     BrowserModule,
     AppRoutingModule,
     NotFoundModule,
+    CommentsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

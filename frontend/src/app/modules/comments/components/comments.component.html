@@ -1,0 +1,16 @@
+COMMENTS
+<ng-container *ngIf="comments">
+  <ng-container *ngFor="let comment of comments ">
+    <ul>
+      <li>
+        user
+        <ng-container *ngIf="comment.user">
+          {{comment.user.firstName}}   {{comment.user.lastName}}
+        </ng-container>
+        commented: {{comment.message}}
+        at {{comment.createdAt | date: 'dd/MM/yyyy, H:mm'}}
+        <button *ngIf="comment.user.id == currentUserId" (click)="deleteComment(comment)">delete comment</button>
+      </li>
+    </ul>
+  </ng-container>
+</ng-container>

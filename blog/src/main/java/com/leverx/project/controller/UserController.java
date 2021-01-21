@@ -19,6 +19,16 @@ public class UserController {
         return userService.find(id);
     }
 
+    @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
+    public User getUserByArticleId(@PathVariable(name = "id") long id) {
+        return userService.findByArticleId(id);
+    }
+
+    @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
+    public User getUserByCommentId(@PathVariable(name = "id") long id) {
+        return userService.findByCommentId(id);
+    }
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public User createUser(@RequestBody User user) {
         return userService.add(user);

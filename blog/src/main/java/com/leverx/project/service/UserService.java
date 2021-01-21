@@ -9,4 +9,6 @@ public interface UserService {
     User find(long id);
     User add(User user);
     void delete(long id);
+    User findByArticleId(long id);
+    User findByCommentId(long id);
 }
