@@ -3,27 +3,63 @@ import {User} from './user';
 import {Tag} from "./tag";
 import {Comment} from "./comment";
 export class Article {
-  id: number;
-  title: string;
-  articleText: string;
-  createdAt: string;
-  updatedAt: string;
-  status: ArticleStatus;
-  tags: Tag[];
-  comments: Comment[];
-  user: User = new User();
+  private _id: number;
+  private _title: string;
+  private _articleText: string;
+  private _createdAt: string;
+  private _updatedAt: string;
+  private _status: ArticleStatus;
+  private _tags: Tag[];
+  private _comments: Comment[];
+  private _user: User = new User();
+
+  set id(value: number) {
+    this._id = value;
+  }
+
+  set title(value: string) {
+    this._title = value;
+  }
+
+  set articleText(value: string) {
+    this._articleText = value;
+  }
+
+  set createdAt(value: string) {
+    this._createdAt = value;
+  }
+
+  set updatedAt(value: string) {
+    this._updatedAt = value;
+  }
+
+  set status(value: ArticleStatus) {
+    this._status = value;
+  }
+
+  set tags(value: Tag[]) {
+    this._tags = value;
+  }
+
+  set comments(value: Comment[]) {
+    this._comments = value;
+  }
+
+  set user(value: User) {
+    this._user = value;
+  }
 
   constructor(id?: number, title?: string, text?: string,
               createdAt?: string, updatedAt?: string, status?: ArticleStatus,
               tags?: Tag[], comments?: Comment[], user?: User) {
-    this.id = id;
-    this.title = title;
-    this.articleText = text;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-    this.status = status;
-    this.tags = tags;
-    this.comments = comments;
-    this.user = user;
+    this._id = id;
+    this._title = title;
+    this._articleText = text;
+    this._createdAt = createdAt;
+    this._updatedAt = updatedAt;
+    this._status = status;
+    this._tags = tags;
+    this._comments = comments;
+    this._user = user;
   }
 }

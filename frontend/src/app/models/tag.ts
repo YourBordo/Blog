@@ -1,9 +1,17 @@
 export class Tag {
-  id: number;
-  tagMessage: string;
+  private _id: number;
+  private _tagMessage: string;
 
   constructor(id?: number, tagMessage?: string) {
-    this.id = id;
-    this.tagMessage = tagMessage;
+    this._id = id;
+    this._tagMessage = tagMessage;
+  }
+
+  set id(value: number) {
+    this._id = value;
+  }
+
+  set tagMessage(value: string) {
+    this._tagMessage = value;
   }
 }

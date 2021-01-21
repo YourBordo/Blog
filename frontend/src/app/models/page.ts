@@ -8,4 +8,5 @@ export class Page<T> {
   pageSize: number = 2;
   sort: Sort = Sort.TITLE;
   order: Order = Order.DESC;
+
 }
