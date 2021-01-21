@@ -15,4 +15,5 @@ public interface ArticleRepository extends CrudRepository<Article, Long> {
     Article findById(long id);
     Page<Article> findAllByUserId(long userId, Pageable pageable);
     Page<Article> findAll(Pageable pageable);
+
 }

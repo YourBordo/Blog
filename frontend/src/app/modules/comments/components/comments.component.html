@@ -7,16 +7,20 @@ COMMENTS
         <ng-container *ngIf="comment.user">
           {{comment.user.firstName}}   {{comment.user.lastName}}
         </ng-container>
+        <ng-container *ngIf="comment.message">
         commented: {{comment.message}}
         at {{comment.createdAt | date: 'dd/MM/yyyy, H:mm'}}
         <button *ngIf="comment.user.id == currentUserId" (click)="deleteComment(comment)">delete comment</button>
+        </ng-container>
+
       </li>
     </ul>
   </ng-container>
 </ng-container>
+
 <hr/>
-<ng-container *ngIf="currentUserId">
-  <h5>Enter your comment here</h5>
-  <input type="text" [(ngModel)]="text" placeholder="text">
-  <input type="button" (click)="addComment()" value="upload">
-</ng-container>
+<add-comment
+  [articleId]="articleId"
+  [currentUserId]="currentUserId"
+  (onUpdate)="onUpdate($event)">
+</add-comment>

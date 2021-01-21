@@ -26,6 +26,7 @@ import {WallComponent} from "./modules/wall/components/wall.component";
 import {NotFoundModule} from "./modules/not-found/not-found.module";
 import {NotFoundComponent} from "./modules/not-found/components/not-found.component";
 import {CommentsModule} from "./modules/comments/comments.module";
+import {AddCommentModule} from "./modules/add-comment/add-comment.module";
 
 const appRoutes: Routes =[
   { path: 'article/:id', component: ArticleComponent},
@@ -59,6 +60,7 @@ const appRoutes: Routes =[
     AppRoutingModule,
     NotFoundModule,
     CommentsModule,
+    AddCommentModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

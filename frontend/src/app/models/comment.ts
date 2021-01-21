@@ -8,6 +8,26 @@ export class Comment {
   private _user: User = new User();
   private _article: Article = new Article();
 
+  get id(): number {
+    return this._id;
+  }
+
+  get message(): string {
+    return this._message;
+  }
+
+  get createdAt(): string {
+    return this._createdAt;
+  }
+
+  get user(): User {
+    return this._user;
+  }
+
+  get article(): Article {
+    return this._article;
+  }
+
   set article(value: Article) {
     this._article = value;
   }

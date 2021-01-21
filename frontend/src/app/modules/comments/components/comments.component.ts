@@ -4,7 +4,6 @@ import {CommentService} from "../../../services/comment.service";
 import {Comment} from "../../../models/comment";
 import {HttpClient} from "@angular/common/http";
 import {DatePipe} from "@angular/common";
-import {User} from "../../../models/user";
 
 @Component({
   selector: 'app-comments',
@@ -18,14 +17,8 @@ export class CommentsComponent implements OnInit {
   @Input() articleId: number;
   @Input() currentUserId: number;
   comments: Comment[];
-  text: string;
-  currentDateTime: string;
-  myDate = new Date();
   constructor(private userService: UserService,
-              private commentService: CommentService,
-              private httpClient: HttpClient,
-              private datePipe: DatePipe) {
-    this.currentDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd hh:mm');
+              private commentService: CommentService) {
   }
 
   ngOnInit(): void {
@@ -58,31 +51,9 @@ export class CommentsComponent implements OnInit {
     }
   }
 
-  addComment(): void {
-    if (this.currentUserId) {
-      if (this.text) {
-        this.httpClient.post("/api/comment/", {
-          message: this.text,
-          createdAt: this.currentDateTime,
-          user:
-            {
-              id: this.currentUserId
-            },
-          article:
-            {
-              id: this.articleId
-            }
+  onUpdate(update:any){
+    this.getComments();
 
-        }).subscribe(
-          res => {
-          },
-          err => {
-            console.log('Error at addComment()');
-          });
-        this.getComments();
-
-      }
-    }
   }
 
 }

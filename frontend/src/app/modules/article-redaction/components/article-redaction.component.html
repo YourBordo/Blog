@@ -1,1 +1,12 @@
 ARTICLE REDACT
+
+<ng-container *ngIf="article.user.id == currentUserId">
+  <button (click)="onClick()">update article</button>
+  <button (click)="deleteArticle()">delete article</button>
+
+  <ng-container *ngIf="showRedact">
+    title <input type="text" [(ngModel)]="article.title" placeholder="title">
+    text <input type="text" [(ngModel)]="article.articleText" placeholder="text">
+    <button (click)="updateArticle()">save changes</button>
+  </ng-container>
+</ng-container>

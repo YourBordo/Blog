@@ -15,6 +15,38 @@ export class User {
     this._id = value;
   }
 
+  get id(): number {
+    return this._id;
+  }
+
+  get firstName(): string {
+    return this._firstName;
+  }
+
+  get lastName(): string {
+    return this._lastName;
+  }
+
+  get password(): string {
+    return this._password;
+  }
+
+  get email(): string {
+    return this._email;
+  }
+
+  get createdAt(): string {
+    return this._createdAt;
+  }
+
+  get comments(): Comment[] {
+    return this._comments;
+  }
+
+  get articles(): Article[] {
+    return this._articles;
+  }
+
   set firstName(value: string) {
     this._firstName = value;
   }

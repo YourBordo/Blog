@@ -3,20 +3,23 @@ ARTICLE
 <ng-container *ngIf="! article">
   <not-found></not-found>
 </ng-container>
+
 <ng-container *ngIf=" article">
 
-  <ng-container *ngIf="article.user">
-    author: {{article.user.firstName}} {{article.user.lastName}}
-  </ng-container>
+  author: {{article.user.firstName}} {{article.user.lastName}}
+  title: {{article.title}}
+  text: {{article.articleText}}
 
-  <div>title: {{article.title}}</div>
-
-  <div>text: {{article.articleText}}</div>
   <hr/>
-  <div>
-    <app-comments [articleId]="article.id"
-                  [currentUserId]="CURRENT_USER_ID">
+  <article-redaction
+    [article]="article"
+    [currentUserId]="CURRENT_USER_ID">
+  </article-redaction>
 
-    </app-comments>
-  </div>
+  <hr/>
+  <app-comments
+    [articleId]="article.id"
+    [currentUserId]="CURRENT_USER_ID">
+  </app-comments>
+
 </ng-container>

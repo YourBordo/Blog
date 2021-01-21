@@ -13,6 +13,42 @@ export class Article {
   private _comments: Comment[];
   private _user: User = new User();
 
+  get id(): number {
+    return this._id;
+  }
+
+  get title(): string {
+    return this._title;
+  }
+
+  get articleText(): string {
+    return this._articleText;
+  }
+
+  get createdAt(): string {
+    return this._createdAt;
+  }
+
+  get updatedAt(): string {
+    return this._updatedAt;
+  }
+
+  get status(): ArticleStatus {
+    return this._status;
+  }
+
+  get tags(): Tag[] {
+    return this._tags;
+  }
+
+  get comments(): Comment[] {
+    return this._comments;
+  }
+
+  get user(): User {
+    return this._user;
+  }
+
   set id(value: number) {
     this._id = value;
   }
