@@ -4,6 +4,7 @@ import {ArticleService} from "../../../services/article.service";
 import {UserService} from "../../../services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
+import {Tag} from "../../../models/tag";
 
 @Component({
   selector: 'article-redaction',
@@ -18,6 +19,9 @@ export class ArticleRedactionComponent {
   public showRedact: boolean = false;
   public currentArticleId: number;
   public currentDateTime: string;
+  public tagName: string;
+
+
   myDate = new Date();
 
   constructor(private articleService: ArticleService,
@@ -56,6 +60,21 @@ export class ArticleRedactionComponent {
     this.showRedact = !this.showRedact;
 
   }
+
+  addTag():void {
+    let tag: Tag = new Tag();
+    tag.tagName = this.tagName;
+    this.article.tags.push(tag);
+
+  }
+   deleteTag(tagToDelete: Tag): void{
+    this.article.tags.forEach(tag =>{
+      if(tag == tagToDelete){
+        let pos: number = this.article.tags.indexOf(tag);
+        this.article.tags.splice(pos, 1);
+      }
+    })
+   }
 
   onClick(): void {
     this.showRedact = !this.showRedact;

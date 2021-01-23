@@ -38,6 +38,7 @@ export class ArticleComponent implements OnInit {
         this.article.user = user;
       }
     })
+
   }
 
 

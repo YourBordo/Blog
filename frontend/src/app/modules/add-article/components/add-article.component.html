@@ -1,0 +1,6 @@
+ADD ARTICLE
+
+<input type="text" [(ngModel)]="article.title" placeholder="title">
+<input type="text" [(ngModel)]="article.articleText" placeholder="text">
+
+<input type="button" (click)="addArticle()" value="save" >

@@ -2,11 +2,9 @@ import {Component, Input, OnChanges, OnInit} from "@angular/core";
 import {UserService} from "../../../services/user.service";
 import {CommentService} from "../../../services/comment.service";
 import {Comment} from "../../../models/comment";
-import {HttpClient} from "@angular/common/http";
-import {DatePipe} from "@angular/common";
 
 @Component({
-  selector: 'app-comments',
+  selector: 'comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.css']
 })

@@ -8,20 +8,22 @@ import {CommentsModule} from "../comments/comments.module";
 import {NotFoundModule} from "../not-found/not-found.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ArticleRedactionModule} from "../article-redaction/article-redaction.module";
+import {TagsModule} from "../tags/tags.module";
 
 @NgModule({
   declarations: [
     ArticleComponent
   ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    CommentsModule,
-    NotFoundModule,
-    ReactiveFormsModule,
-    FormsModule,
-    ArticleRedactionModule
-  ],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        CommentsModule,
+        NotFoundModule,
+        ReactiveFormsModule,
+        FormsModule,
+        ArticleRedactionModule,
+        TagsModule
+    ],
   providers: [ArticleService, UserService],
   exports: [ArticleComponent]
 })

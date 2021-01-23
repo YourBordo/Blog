@@ -40,7 +40,7 @@ public class Article {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "article_tag",
             joinColumns = @JoinColumn(name = "article_id", referencedColumnName = "id"),

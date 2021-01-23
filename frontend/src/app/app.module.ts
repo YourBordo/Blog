@@ -27,6 +27,10 @@ import {NotFoundModule} from "./modules/not-found/not-found.module";
 import {NotFoundComponent} from "./modules/not-found/components/not-found.component";
 import {CommentsModule} from "./modules/comments/comments.module";
 import {AddCommentModule} from "./modules/add-comment/add-comment.module";
+import {AddArticleModule} from "./modules/add-article/add-article.module";
+import {AddArticleComponent} from "./modules/add-article/components/add-article.component";
+import {TagsModule} from "./modules/tags/tags.module";
+import {ArticleTagsRedactModule} from "./modules/article-tags-redact/article-tags-redact.module";
 
 const appRoutes: Routes =[
   { path: 'article/:id', component: ArticleComponent},
@@ -35,6 +39,7 @@ const appRoutes: Routes =[
   { path: 'forgot', component: ForgotPasswordComponent},
   { path: 'login', component: LoginComponent},
   { path: 'profile/:id', component: ProfileComponent},
+  { path: 'create/article', component: AddArticleComponent},
   { path: 'registration', component: RegistrationComponent},
   { path: 'search', component: SearchComponent},
   { path: 'wall', component: WallComponent},
@@ -61,6 +66,9 @@ const appRoutes: Routes =[
     NotFoundModule,
     CommentsModule,
     AddCommentModule,
+    AddArticleModule,
+    TagsModule,
+    ArticleTagsRedactModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

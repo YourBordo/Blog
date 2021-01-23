@@ -34,4 +34,9 @@ public class TagServiceImpl implements TagService {
         }
         return cloud;
     }
+
+    @Override
+    public Tag add(Tag tag) {
+        return tagRepository.save(tag);
+    }
 }

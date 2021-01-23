@@ -1,12 +1,30 @@
 ARTICLE REDACT
 
 <ng-container *ngIf="article.user.id == currentUserId">
+
   <button (click)="onClick()">update article</button>
   <button (click)="deleteArticle()">delete article</button>
 
   <ng-container *ngIf="showRedact">
+
     title <input type="text" [(ngModel)]="article.title" placeholder="title">
     text <input type="text" [(ngModel)]="article.articleText" placeholder="text">
+
+    <ng-container *ngIf="article.tags">
+      <ng-container *ngFor="let tag of article.tags ">
+        <ul>
+          <li>
+            {{tag.tagName}}
+            <button (click)="deleteTag(tag)">delete tag</button>
+          </li>
+        </ul>
+      </ng-container>
+    </ng-container>
+
+    <input type="text" [(ngModel)]="tagName" placeholder="add tag">
+    <button (click)="addTag()">addTag</button>
+
     <button (click)="updateArticle()">save changes</button>
+
   </ng-container>
 </ng-container>

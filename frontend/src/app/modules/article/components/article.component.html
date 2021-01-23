@@ -11,15 +11,20 @@ ARTICLE
   text: {{article.articleText}}
 
   <hr/>
+  <tags
+    [article]="article">
+  </tags>
+
+  <hr/>
   <article-redaction
     [article]="article"
     [currentUserId]="CURRENT_USER_ID">
   </article-redaction>
 
   <hr/>
-  <app-comments
+  <comments
     [articleId]="article.id"
     [currentUserId]="CURRENT_USER_ID">
-  </app-comments>
+  </comments>
 
 </ng-container>

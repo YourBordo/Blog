@@ -1,11 +1,9 @@
 package com.leverx.project.controller;
 
 import com.leverx.project.entity.Tag;
+import com.leverx.project.entity.User;
 import com.leverx.project.service.TagService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -28,4 +26,10 @@ public class TagController {
     public Map<String, Integer> getTagCloud() {
         return tagService.getTagCloud();
     }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public Tag createTag(@RequestBody Tag tag) {
+        return tagService.add(tag);
+    }
+
 }

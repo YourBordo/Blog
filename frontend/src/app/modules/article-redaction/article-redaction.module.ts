@@ -3,6 +3,7 @@ import {CommonModule} from "@angular/common";
 import {BrowserModule} from "@angular/platform-browser";
 import {ArticleRedactionComponent} from "./components/article-redaction.component";
 import {FormsModule} from "@angular/forms";
+import {ArticleTagsRedactModule} from "../article-tags-redact/article-tags-redact.module";
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import {FormsModule} from "@angular/forms";
     imports: [
         CommonModule,
         BrowserModule,
-        FormsModule
+        FormsModule,
+        ArticleTagsRedactModule
     ],
   providers: [],
   exports: [ArticleRedactionComponent]

@@ -1,0 +1,10 @@
+TAGS
+<ng-container *ngIf="article.tags">
+  <ng-container *ngFor="let tag of article.tags ">
+    <ul>
+      <li>
+        {{tag.tagName}}
+      </li>
+    </ul>
+</ng-container>
+</ng-container>

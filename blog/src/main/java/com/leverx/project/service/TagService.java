@@ -9,4 +9,5 @@ import java.util.Map;
 public interface TagService {
     Tag find(long id);
     Map<String, Integer> getTagCloud();
+    Tag add(Tag tag);
 }
