@@ -5,6 +5,7 @@ import {UserService} from "../../../services/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import {Tag} from "../../../models/tag";
+import {ArticleStatus} from "../../../models/enums/article-status";
 
 @Component({
   selector: 'article-redaction',
@@ -20,9 +21,8 @@ export class ArticleRedactionComponent {
   public currentArticleId: number;
   public currentDateTime: string;
   public tagName: string;
-
-
   myDate = new Date();
+
 
   constructor(private articleService: ArticleService,
               private userService: UserService,
@@ -31,7 +31,6 @@ export class ArticleRedactionComponent {
               private datePipe: DatePipe) {
     this.currentArticleId = activatedRoute.snapshot.params['id'];
     this.currentDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd hh:mm');
-
   }
 
 
@@ -79,4 +78,6 @@ export class ArticleRedactionComponent {
   onClick(): void {
     this.showRedact = !this.showRedact;
   }
+
+
 }

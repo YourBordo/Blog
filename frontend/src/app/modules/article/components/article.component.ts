@@ -4,6 +4,7 @@ import {ArticleService} from "../../../services/article.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Comment} from "../../../models/comment";
 import {UserService} from "../../../services/user.service";
+import {ArticleStatus} from "../../../models/enums/article-status";
 
 @Component({
   selector: 'article',
@@ -18,6 +19,7 @@ export class ArticleComponent implements OnInit {
   public article: Article;
   public comments: Comment[];
   public currentArticleId: number;
+
 
   constructor(private articleService: ArticleService,
               private userService: UserService,

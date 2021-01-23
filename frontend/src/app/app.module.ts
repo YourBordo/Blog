@@ -30,7 +30,6 @@ import {AddCommentModule} from "./modules/add-comment/add-comment.module";
 import {AddArticleModule} from "./modules/add-article/add-article.module";
 import {AddArticleComponent} from "./modules/add-article/components/add-article.component";
 import {TagsModule} from "./modules/tags/tags.module";
-import {ArticleTagsRedactModule} from "./modules/article-tags-redact/article-tags-redact.module";
 
 const appRoutes: Routes =[
   { path: 'article/:id', component: ArticleComponent},
@@ -68,7 +67,6 @@ const appRoutes: Routes =[
     AddCommentModule,
     AddArticleModule,
     TagsModule,
-    ArticleTagsRedactModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

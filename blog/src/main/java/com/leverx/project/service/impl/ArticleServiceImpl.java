@@ -52,7 +52,6 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article add(Article article) {
-        article.setArticleStatus(ArticleStatus.PUBLIC);
         return articleRepository.save(article);
     }
 

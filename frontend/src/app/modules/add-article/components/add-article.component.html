@@ -1,6 +1,26 @@
 ADD ARTICLE
+<ng-container *ngIf="currentUserId">
 
 <input type="text" [(ngModel)]="article.title" placeholder="title">
 <input type="text" [(ngModel)]="article.articleText" placeholder="text">
 
-<input type="button" (click)="addArticle()" value="save" >
+  <input type="text" [(ngModel)]="tagName" placeholder="add tag">
+  <button (click)="addTag()">addTag</button>
+
+  <ng-container *ngIf="article.tags">
+    <ng-container *ngFor="let tag of article.tags ">
+      <ul>
+        <li>
+          {{tag.tagName}}
+          <button (click)="deleteTag(tag)">delete tag</button>
+        </li>
+      </ul>
+    </ng-container>
+  </ng-container>
+
+  <button (click)="setArticleStatusPublic()">PUBLIC</button>
+  <button (click)="setArticleStatusDraft()">DRAFT</button>
+
+  <input type="button" (click)="addArticle()" value="save" >
+
+</ng-container>
