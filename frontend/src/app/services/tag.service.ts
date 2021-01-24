@@ -20,4 +20,8 @@ export class TagService {
     return this.http.get<Tag>(this.url + tagId);
   }
 
+  public getTagsLike(tagName: string): Observable<Tag[]> {
+    return this.http.get<Tag[]>(this.url + "tagName=" + tagName);
+  }
+
 }

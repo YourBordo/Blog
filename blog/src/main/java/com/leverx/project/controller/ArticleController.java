@@ -1,6 +1,7 @@
 package com.leverx.project.controller;
 
 import com.leverx.project.entity.Article;
+import com.leverx.project.entity.Tag;
 import com.leverx.project.pagination.PageWrapper;
 import com.leverx.project.service.ArticleService;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +55,11 @@ public class ArticleController {
                                                     @PathVariable("sort") String sortBy,
                                                     @PathVariable("order") String order) {
         return articleService.findAllByUserId(id, page, size, sortBy, order);
+    }
+
+    @RequestMapping(value = "/title={title}", method = RequestMethod.GET)
+    public List<Article> getArticlesByTitleLike(@PathVariable(name = "title") String title) {
+        return articleService.findLike(title);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT)

@@ -15,5 +15,7 @@ public interface ArticleService {
     Article update(Article article);
     Article add(Article article);
     PageWrapper<Article> findAll(int pageNumber, int pageSize, String sortBy, String order);
-    PageWrapper<Article> findAllByUserId(long userId, int pageNumber, int pageSize, String sortBy, String order);
+    PageWrapper<Article> findAllByUserId(long userId, int pageNumber, int pageSize,
+                                         String sortBy, String order);
+    List<Article> findLike(String title);
 }

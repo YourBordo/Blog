@@ -39,4 +39,9 @@ public class TagServiceImpl implements TagService {
     public Tag add(Tag tag) {
         return tagRepository.save(tag);
     }
+
+    @Override
+    public List<Tag> findLike(String tagName) {
+        return tagRepository.getAllByTagNameContaining(tagName);
+    }
 }

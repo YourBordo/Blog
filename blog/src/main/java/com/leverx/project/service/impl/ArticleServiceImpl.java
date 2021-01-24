@@ -51,6 +51,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> findLike(String title) {
+        return articleRepository.getAllByTitleContaining(title);
+    }
+
+    @Override
     public Article add(Article article) {
         return articleRepository.save(article);
     }

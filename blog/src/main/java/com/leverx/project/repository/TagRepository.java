@@ -13,4 +13,5 @@ public interface TagRepository extends CrudRepository<Tag, Long> {
     Tag findByTagName(String tagName);
     List<Tag> findAll();
     int countAllByTagName(String tagName);
+    List<Tag> getAllByTagNameContaining(String tagName);
 }

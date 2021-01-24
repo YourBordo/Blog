@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {Article} from "../models/article";
 import {Page} from "../models/page";
 import {Injectable} from "@angular/core";
+import {Tag} from "../models/tag";
 
 @Injectable()
 export class ArticleService {
@@ -28,7 +29,7 @@ export class ArticleService {
     return this.http.get<Article[]>(this.url + "tag/" + tagId);
   }
 
-  //todo check params for pagination url
+  //check it
   public getArticlesPage(page: Page<Article>): Observable<Page<Article>> {
     const params = ArticleService.getParams(page);
     return this.http.get<Page<Article>>(this.url, {params});
@@ -59,5 +60,8 @@ export class ArticleService {
       .set('order', page.order.toString());
   }
 
+  public getArticlesLike(title: string): Observable<Article[]> {
+    return this.http.get<Article[]>(this.url + "title=" + title);
+  }
 
 }

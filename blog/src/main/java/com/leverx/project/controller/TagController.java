@@ -5,6 +5,7 @@ import com.leverx.project.entity.User;
 import com.leverx.project.service.TagService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -25,6 +26,11 @@ public class TagController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Map<String, Integer> getTagCloud() {
         return tagService.getTagCloud();
+    }
+
+    @RequestMapping(value = "/tagName={tagName}", method = RequestMethod.GET)
+    public List<Tag> getTagsByTagNameLike(@PathVariable(name = "tagName") String tagName) {
+        return tagService.findLike(tagName);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
