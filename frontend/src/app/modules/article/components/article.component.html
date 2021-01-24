@@ -10,6 +10,8 @@ ARTICLE
   title: {{article.title}}
   text: {{article.articleText}}
   status: {{article.articleStatus}}
+  created: {{article.createdAt | date: 'dd/MM/yyyy, H:mm'}}
+  updated: {{article.updatedAt | date: 'dd/MM/yyyy, H:mm'}}
 
   <hr/>
   <tags

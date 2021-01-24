@@ -23,8 +23,7 @@ export class ArticleComponent implements OnInit {
 
   constructor(private articleService: ArticleService,
               private userService: UserService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) {
+              private activatedRoute: ActivatedRoute) {
     this.currentArticleId = activatedRoute.snapshot.params['id'];
   }
 

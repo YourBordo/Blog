@@ -67,7 +67,9 @@ const appRoutes: Routes =[
     AddCommentModule,
     AddArticleModule,
     TagsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

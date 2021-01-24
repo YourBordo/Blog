@@ -1,1 +1,23 @@
 PROFILE
+<ng-container *ngIf="user">
+  {{user.firstName}} {{user.lastName}}
+
+
+  <ng-container *ngIf="user.articles">
+    <ng-container *ngFor="let article of user.articles
+    | paginate: { itemsPerPage: itemsPerPageAmount, currentPage: page }">
+      <ul>
+        <li>
+          <button [routerLink]="['/article', article.id]" routerLinkActive="active"
+                  [routerLinkActiveOptions]="{exact:true}">
+            title: {{article.title}}
+          </button>
+          text: {{article.articleText}}
+          status: {{article.articleStatus}}
+        </li>
+      </ul>
+    </ng-container>
+    <input type="number" [(ngModel)]="itemsPerPageAmount" placeholder="set items per page">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </ng-container>
+</ng-container>
