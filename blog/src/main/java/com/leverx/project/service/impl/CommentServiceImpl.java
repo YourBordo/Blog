@@ -8,6 +8,7 @@ import com.leverx.project.service.CommentService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class CommentServiceImpl implements CommentService {
@@ -24,12 +25,23 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> findByUserId(long id) {
-        return userRepository.findById(id).getComments();
+        Optional<List<Comment>> optionalComments =
+                Optional.ofNullable(userRepository.findById(id).getComments());
+        return optionalComments.orElse(null);
     }
 
     @Override
     public List<Comment> findByArticleId(long id) {
-        return articleRepository.findById(id).getComments();
+        Optional<List<Comment>> optionalComments =
+                Optional.ofNullable(articleRepository.findById(id).getComments());
+        return optionalComments.orElse(null);
+    }
+
+    @Override
+    public Comment find(long id) {
+        Optional<Comment> optionalComment =
+                Optional.ofNullable(commentRepository.findById(id));
+        return optionalComment.orElse(null);
     }
 
     @Override
@@ -40,10 +52,5 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment add(Comment comment) {
         return commentRepository.save(comment);
-    }
-
-    @Override
-    public Comment find(long id) {
-        return commentRepository.findById(id);
     }
 }

@@ -29,7 +29,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User find(String firstName) {
-        return userRepository.findByFirstName(firstName);
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByFirstName(firstName));
+        return optionalUser.orElse(null);
     }
 
     @Override
@@ -44,12 +45,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User find(long id) {
-        return userRepository.findById(id);
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findById(id));
+        return optionalUser.orElse(null);
     }
 
     @Override
     public User findByArticleId(long id) {
-       return articleRepository.findById(id).getUser();
+        Optional<User> optionalUser = Optional.ofNullable(articleRepository.findById(id).getUser());
+        return optionalUser.orElse(null);
     }
 
     @Override

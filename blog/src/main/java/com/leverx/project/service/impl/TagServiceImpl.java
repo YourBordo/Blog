@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Component
 public class TagServiceImpl implements TagService {
@@ -20,19 +21,23 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public Tag find(long id) {
-        return tagRepository.findById(id);
+        Optional<Tag> optionalTag = Optional.ofNullable(tagRepository.findById(id));
+        return optionalTag.orElse(null);
     }
 
     @Override
     public Map<String, Integer> getTagCloud() {
-        List<Tag> tags = tagRepository.findAll();
-        int count;
-        HashMap<String, Integer> cloud = new HashMap<>();
-        for (Tag tag : tags) {
-            count = tagRepository.countAllByTagName(tag.getTagName());
-            cloud.put(tag.getTagName(), count);
+        Optional<List<Tag>> optionalTags = Optional.ofNullable(tagRepository.findAll());
+        if(optionalTags.isPresent()) {
+            int count;
+            HashMap<String, Integer> cloud = new HashMap<>();
+            for (Tag tag : optionalTags.get()) {
+                count = tagRepository.countAllByTagName(tag.getTagName());
+                cloud.put(tag.getTagName(), count);
+            }
+            return cloud;
         }
-        return cloud;
+        return null;
     }
 
     @Override
@@ -42,6 +47,8 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public List<Tag> findLike(String tagName) {
-        return tagRepository.getAllByTagNameContaining(tagName);
+        Optional<List<Tag>> optionalTag =
+                Optional.ofNullable(tagRepository.getAllByTagNameContaining(tagName));
+        return optionalTag.orElse(null);
     }
 }

@@ -30,7 +30,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> find() {
-        return articleRepository.findAll();
+        Optional<List<Article>> optionalArticles =
+                Optional.ofNullable(articleRepository.findAll());
+        return optionalArticles.orElse(null);
     }
 
     @Override
@@ -41,7 +43,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article findByTagId(long id) {
-        return tagRepository.findById(id).getArticles().get(0);
+        Optional<Article> optionalArticle =
+                Optional.ofNullable(tagRepository.findById(id).getArticles().get(0));
+        return optionalArticle.orElse(null);
     }
 
     @Override
@@ -52,7 +56,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> findLike(String title) {
-        return articleRepository.getAllByTitleContaining(title);
+        Optional<List<Article>> optionalArticles =
+                Optional.ofNullable(articleRepository.getAllByTitleContaining(title));
+        return optionalArticles.orElse(null);
     }
 
     @Override
@@ -62,7 +68,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> findByUserId(long id) {
-        return userRepository.findById(id).getArticles();
+        Optional<List<Article>> optionalArticles =
+                Optional.ofNullable(userRepository.findById(id).getArticles());
+        return optionalArticles.orElse(null);
     }
 
     @Override
@@ -72,16 +80,29 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public PageWrapper<Article> findAll(int pageNumber, int pageSize, String sortBy, String order) {
-        PageRequest pageRequest = this.createRequest(pageNumber, pageSize, sortBy, order);
-        Page<Article> page = articleRepository.findAll(pageRequest);
-        return new PageWrapper<>(page.getContent(), page.getTotalPages());
+        if (pageNumber >= 0 && pageSize >= 0 &&
+                (sortBy.equals("id") || sortBy.equals("title") || sortBy.equals("createdAt") ||
+                        sortBy.equals("updatedAt") || sortBy.equals("articleStatus")) &&
+                (order.equals("asc") || order.equals("desc"))) {
+            PageRequest pageRequest = this.createRequest(pageNumber, pageSize, sortBy, order);
+            Page<Article> page = articleRepository.findAll(pageRequest);
+            return new PageWrapper<>(page.getContent(), page.getTotalPages());
+
+        }
+        return null;
     }
 
     @Override
     public PageWrapper<Article> findAllByUserId(long id, int pageNumber, int pageSize, String sortBy, String order) {
-        PageRequest pageRequest = this.createRequest(pageNumber, pageSize, sortBy, order);
-        Page<Article> page = articleRepository.findAllByUserId(id, pageRequest);
-        return new PageWrapper<>(page.getContent(), page.getTotalPages());
+        if (pageNumber >= 0 && pageSize >= 0 &&
+                (sortBy.equals("id") || sortBy.equals("title") || sortBy.equals("createdAt") ||
+                        sortBy.equals("updatedAt") || sortBy.equals("articleStatus")) &&
+                (order.equals("asc") || order.equals("desc"))) {
+            PageRequest pageRequest = this.createRequest(pageNumber, pageSize, sortBy, order);
+            Page<Article> page = articleRepository.findAllByUserId(id, pageRequest);
+            return new PageWrapper<>(page.getContent(), page.getTotalPages());
+        }
+        return null;
     }
 
     private PageRequest createRequest(int pageNumber, int pageSize, String sortBy, String order) {
