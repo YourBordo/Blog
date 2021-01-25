@@ -1,1 +1,28 @@
 SEARCH
+<input type="text" [(ngModel)]="text" placeholder="search here">
+
+<button  (click)="search()" >search</button>
+<input type="radio" name="searchField"  [value]="true"  [(ngModel)]="isTag">tag
+<input type="radio" name="searchField" [value]="false" [(ngModel)]="isTag">title
+
+<ng-container *ngIf="articles.length">
+  <ng-container *ngFor="let article of articles
+    | paginate: { itemsPerPage: itemsPerPageAmount, currentPage: page }">
+    <ul>
+      <li>
+        <button [routerLink]="['/article', article.id]" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact:true}">
+          title: {{article.title}}
+        </button>
+        text: {{article.articleText}}
+        status: {{article.articleStatus}}
+      </li>
+    </ul>
+  </ng-container>
+  <input type="number" [(ngModel)]="itemsPerPageAmount" placeholder="set items per page">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</ng-container>
+
+<ng-container *ngIf="!articles.length">
+  nothing to show you now
+</ng-container>

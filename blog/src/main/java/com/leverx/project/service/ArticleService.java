@@ -11,7 +11,7 @@ public interface ArticleService {
     void   delete(long id);
     Article find(long id);
     List<Article> findByUserId(long id);
-    List<Article> findByTagId(long id);
+    Article findByTagId(long id);
     Article update(Article article);
     Article add(Article article);
     PageWrapper<Article> findAll(int pageNumber, int pageSize, String sortBy, String order);

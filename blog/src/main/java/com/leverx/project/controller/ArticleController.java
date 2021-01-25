@@ -36,7 +36,7 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/tag/{id}", method = RequestMethod.GET)
-    public List<Article> getArticlesByTagId(@PathVariable(name = "id") long id) {
+    public Article getArticleByTagId(@PathVariable(name = "id") long id) {
         return articleService.findByTagId(id);
     }
 

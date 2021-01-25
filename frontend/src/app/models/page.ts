@@ -9,4 +9,13 @@ export class Page<T> {
   sort: Sort = Sort.TITLE;
   order: Order = Order.DESC;
 
+  constructor(content?: T[], totalPages?: number, pageNumber?: number,
+              pageSize?: number, sort?: Sort, order?: Order) {
+    this.content = content;
+    this.totalPages = totalPages;
+    this.pageNumber = pageNumber;
+    this.pageSize = pageSize;
+    this.sort = sort;
+    this.order = order;
+  }
 }

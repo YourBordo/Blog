@@ -1,11 +1,14 @@
-ARTICLE REDACT
-
 <ng-container *ngIf="article.user.id == currentUserId">
+  ARTICLE REDACT
+
 
   <button (click)="onClick()">update article</button>
   <button (click)="deleteArticle()">delete article</button>
 
   <ng-container *ngIf="showRedact">
+
+    <button (click)="setArticleStatusPublic()">PUBLIC</button>
+    <button (click)="setArticleStatusDraft()">DRAFT</button>
 
     title <input type="text" [(ngModel)]="article.title" placeholder="title">
     text <input type="text" [(ngModel)]="article.articleText" placeholder="text">

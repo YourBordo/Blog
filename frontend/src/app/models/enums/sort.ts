@@ -1,3 +1,5 @@
 export enum Sort {
-  TITLE = "title"
+  TITLE = "title",
+  CREATED_AT = "createdAt",
+  UPDATED_AT = "updatedAt"
 }

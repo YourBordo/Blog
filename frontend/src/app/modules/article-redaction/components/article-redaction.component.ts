@@ -79,5 +79,12 @@ export class ArticleRedactionComponent {
     this.showRedact = !this.showRedact;
   }
 
+  setArticleStatusPublic(): void {
+    this.article.articleStatus = ArticleStatus.PUBLIC;
+  }
+
+  setArticleStatusDraft(): void {
+    this.article.articleStatus = ArticleStatus.DRAFT;
+  }
 
 }

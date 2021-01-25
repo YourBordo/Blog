@@ -40,8 +40,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> findByTagId(long id) {
-        return tagRepository.findById(id).getArticles();
+    public Article findByTagId(long id) {
+        return tagRepository.findById(id).getArticles().get(0);
     }
 
     @Override
