@@ -2,6 +2,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../models/user";
 import {Injectable} from "@angular/core";
+import {Login} from "../models/login";
 
 
 @Injectable()
@@ -29,4 +30,16 @@ export class UserService {
     return this.http.delete(this.url + userId);
   }
 
+  public generateToken(login: Login): Observable<AuthToken> {
+    return this.http.post<AuthToken>("/api/token/generate-token", login);
+  }
+
+  public getAuthorizedUser(): Observable<User> {
+    return this.http.get<User>("/api/user/current");
+  }
+
+}
+
+export interface AuthToken {
+  readonly token: string;
 }

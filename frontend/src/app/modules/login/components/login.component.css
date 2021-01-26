@@ -1,0 +1,16 @@
+.login-form__container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 57px auto;
+  background-color: rgba(221, 204, 215, 0.56);
+
+}
+.enter{
+  margin: 57px auto;
+  background-color: rgba(221, 204, 215, 0.56);
+}
+.login-form__danger-alert {
+  margin-top: 57px;
+  background-color: rgba(221, 204, 215, 0.56);
+}

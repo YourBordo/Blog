@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User find(String firstName) {
-        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByFirstName(firstName));
+    public User find(String email) {
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByEmail(email));
         return optionalUser.orElse(null);
     }
 

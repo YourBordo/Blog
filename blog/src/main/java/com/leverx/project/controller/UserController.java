@@ -19,6 +19,11 @@ public class UserController {
         return userService.find(id);
     }
 
+    @RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
+    public User getUserById(@PathVariable(name = "email") String email) {
+        return userService.find(email);
+    }
+
     @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
     public User getUserByArticleId(@PathVariable(name = "id") long id) {
         return userService.findByArticleId(id);

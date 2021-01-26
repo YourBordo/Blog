@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ArticleModule} from "./modules/article/article.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ArticleRedactionModule} from "./modules/article-redaction/article-redaction.module";
 import {EnterModule} from "./modules/enter/enter.module";
 import {ForgotPasswordModule} from "./modules/forgot-password/forgot-password.module";
@@ -30,6 +30,9 @@ import {AddCommentModule} from "./modules/add-comment/add-comment.module";
 import {AddArticleModule} from "./modules/add-article/add-article.module";
 import {AddArticleComponent} from "./modules/add-article/components/add-article.component";
 import {TagsModule} from "./modules/tags/tags.module";
+import {APIInterceptor} from "./interseptors/api-interceptor";
+import {AuthService} from "./services/auth.service";
+import {StorageService} from "./services/storage.service";
 
 const appRoutes: Routes =[
   { path: 'article/:id', component: ArticleComponent},
@@ -71,7 +74,18 @@ const appRoutes: Routes =[
 
 
   ],
-  providers: [],
+  providers: [APIInterceptor, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: APIInterceptor,
+    multi: true
+  },
+    // AuthService, {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: (storageService: StorageService) => () => storageService.getCurrentUser(),
+    //   deps: [AuthService],
+    //   multi: true
+    // }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

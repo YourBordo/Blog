@@ -2,6 +2,9 @@ package com.leverx.project.controller;
 
 import com.leverx.project.entity.User;
 import com.leverx.project.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,6 +22,11 @@ public class UserController {
         return userService.find(id);
     }
 
+    @RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
+    public User getUserById(@PathVariable(name = "email") String email) {
+        return userService.find(email);
+    }
+
     @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
     public User getUserByArticleId(@PathVariable(name = "id") long id) {
         return userService.findByArticleId(id);
@@ -27,6 +35,14 @@ public class UserController {
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
     public User getUserByCommentId(@PathVariable(name = "id") long id) {
         return userService.findByCommentId(id);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/current")
+    public User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // todo exclude password from model!
+        return userService.find(((org.springframework.security.core.userdetails.User) authentication.getPrincipal()).getUsername());
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
