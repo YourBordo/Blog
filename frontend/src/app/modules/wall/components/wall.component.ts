@@ -5,6 +5,7 @@ import {ArticleStatus} from "../../../models/enums/article-status";
 import {Page} from "../../../models/page";
 import {Order} from "../../../models/enums/order";
 import {Sort} from "../../../models/enums/sort";
+import {StorageService} from "../../../services/storage.service";
 
 @Component({
   selector: 'wall',
@@ -13,21 +14,21 @@ import {Sort} from "../../../models/enums/sort";
 })
 
 export class WallComponent implements OnInit {
-  public currentUserId: number = 1;
   public articles: Article[];
-  public page: number = 0;
-  public itemsPerPageAmount: number = 1;
+  public PAGE: number = 0;
+  public ITEMS_PER_PAGE: number = 10;
   public order: Order = Order.ASC;
   public sort: Sort = Sort.TITLE;
 
-  constructor(private articleService: ArticleService) {
+  constructor(private articleService: ArticleService,
+              public storageService: StorageService) {
   }
 
   ngOnInit(): void {
     this.articleService.getArticles().subscribe(responseArticles => {
       this.articles = responseArticles;
 
-      if (!this.currentUserId) {
+      if (!this.storageService.getCurrentUser()) {
         this.removeDraftArticles();
       }
     })

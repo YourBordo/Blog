@@ -3,6 +3,7 @@ import {ArticleService} from "../../../services/article.service";
 import {TagService} from "../../../services/tag.service";
 import {Article} from "../../../models/article";
 import {ArticleStatus} from "../../../models/enums/article-status";
+import {StorageService} from "../../../services/storage.service";
 
 @Component({
   selector: 'search',
@@ -12,7 +13,6 @@ import {ArticleStatus} from "../../../models/enums/article-status";
 
 export class SearchComponent{
 
-  public currentUserId: number = 1;
   public text: string;
   public isTag: boolean = true;
   public articles: Article[] =[];
@@ -20,7 +20,8 @@ export class SearchComponent{
   public itemsPerPageAmount: number = 1;
 
   constructor(private articleService: ArticleService,
-              private tagService: TagService) {
+              private tagService: TagService,
+              public storageService: StorageService) {
   }
 
   search(): void{
@@ -38,7 +39,7 @@ export class SearchComponent{
         this.articles = responseArticles;
       })
     }
-    if (!this.currentUserId) {
+    if (!this.storageService.getCurrentUser()) {
       this.removeDraftArticles();
     }
   }

@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import {Tag} from "../../../models/tag";
 import {ArticleStatus} from "../../../models/enums/article-status";
+import {StorageService} from "../../../services/storage.service";
 
 @Component({
   selector: 'article-redaction',
@@ -15,7 +16,6 @@ import {ArticleStatus} from "../../../models/enums/article-status";
 
 export class ArticleRedactionComponent {
   @Input() article: Article;
-  @Input() currentUserId: number;
 
   public showRedact: boolean = false;
   public currentArticleId: number;
@@ -28,26 +28,27 @@ export class ArticleRedactionComponent {
               private userService: UserService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private datePipe: DatePipe) {
+              private datePipe: DatePipe,
+              public storageService: StorageService) {
     this.currentArticleId = activatedRoute.snapshot.params['id'];
     this.currentDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd hh:mm');
   }
 
 
   deleteArticle(): void {
-    if (this.currentUserId == this.article.user.id) {
+    if (this.storageService.getCurrentUser().id == this.article.user.id) {
       this.articleService.deleteArticle(this.currentArticleId).subscribe();
     }
 
     this.articleService.getArticle(this.currentArticleId).subscribe(article1 => {
       this.article = article1;
-      this.router.navigate(['profile/' + this.currentUserId]).then(r => {
+      this.router.navigate(['profile/' + this.storageService.getCurrentUser().id]).then(r => {
       });
     });
   }
 
   updateArticle(): void {
-    if (this.currentUserId == this.article.user.id) {
+    if (this.storageService.getCurrentUser().id == this.article.user.id) {
       this.article.updatedAt = this.currentDateTime;
       this.articleService.updateArticle(this.article).subscribe(responseArticle => {
         this.article = responseArticle;

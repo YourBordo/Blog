@@ -1,5 +1,5 @@
 ADD ARTICLE
-<ng-container *ngIf="currentUserId">
+<ng-container *ngIf="storageService.getCurrentUser()">
 
 <input type="text" [(ngModel)]="article.title" placeholder="title">
 <input type="text" [(ngModel)]="article.articleText" placeholder="text">

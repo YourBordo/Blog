@@ -4,6 +4,7 @@ import {UserService} from "../../../services/user.service";
 import {CommentService} from "../../../services/comment.service";
 import {HttpClient} from "@angular/common/http";
 import {DatePipe} from "@angular/common";
+import {StorageService} from "../../../services/storage.service";
 
 @Component({
   selector: 'add-comment',
@@ -13,7 +14,6 @@ import {DatePipe} from "@angular/common";
 
 export class AddCommentComponent {
   @Input() articleId: number;
-  @Input() currentUserId: number;
   @Output() onUpdate = new EventEmitter<any>();
 
   comments: Comment[];
@@ -24,13 +24,14 @@ export class AddCommentComponent {
   constructor(private userService: UserService,
               private commentService: CommentService,
               private httpClient: HttpClient,
-              private datePipe: DatePipe) {
+              private datePipe: DatePipe,
+              public storageService: StorageService) {
     this.currentDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd hh:mm');
   }
 
 
   addComment(): void {
-    if (this.currentUserId) {
+    if (this.storageService.getCurrentUser()) {
       if (this.text) {
 
         this.httpClient.post("/api/comment/", {
@@ -38,7 +39,7 @@ export class AddCommentComponent {
           createdAt: this.currentDateTime,
           user:
             {
-              id: this.currentUserId
+              id: this.storageService.getCurrentUser().id
             },
           article:
             {

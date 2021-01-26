@@ -1,10 +1,10 @@
-<ng-container *ngIf="article.user.id == currentUserId">
+<ng-container *ngIf="article.user.id == storageService.getCurrentUser().id">
   ARTICLE REDACT
 
-
+  <ng-container *ngIf="!showRedact">
   <button (click)="onClick()">update article</button>
   <button (click)="deleteArticle()">delete article</button>
-
+  </ng-container>
   <ng-container *ngIf="showRedact">
 
     <button (click)="setArticleStatusPublic()">PUBLIC</button>

@@ -1,0 +1,16 @@
+HEADER
+<ng-container *ngIf="storageService.getCurrentUser()">
+  <button [routerLink]="['/profile/' + storageService.getCurrentUser().id]" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}">
+    {{storageService.getCurrentUser().firstName}}
+    {{storageService.getCurrentUser().lastName}}
+  </button>
+  <button [routerLink]="['/wall']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}">Blog</button>
+  <button (click)="logout()" [routerLink]="['/login']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}">Logout</button>
+</ng-container>
+<ng-container *ngIf="!storageService.getCurrentUser()">
+  <button [routerLink]="['/login']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}">Login</button>
+</ng-container>

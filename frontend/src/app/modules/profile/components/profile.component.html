@@ -1,11 +1,12 @@
 PROFILE
 <ng-container *ngIf="user">
   {{user.firstName}} {{user.lastName}}
-
+  <button [routerLink]="['/create/article']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}">create new article</button>
 
   <ng-container *ngIf="user.articles">
     <ng-container *ngFor="let article of user.articles
-    | paginate: { itemsPerPage: itemsPerPageAmount, currentPage: page }">
+    | paginate: { itemsPerPage: ITEMS_PER_PAGE, currentPage: PAGE }">
       <ul>
         <li>
           <button [routerLink]="['/article', article.id]" routerLinkActive="active"
@@ -17,7 +18,8 @@ PROFILE
         </li>
       </ul>
     </ng-container>
-    <input type="number" [(ngModel)]="itemsPerPageAmount" placeholder="set items per page">
-    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    <pagination-controls (pageChange)="PAGE = $event"></pagination-controls>
+    <input type="number" [(ngModel)]="ITEMS_PER_PAGE" placeholder="set items per page">
+
   </ng-container>
 </ng-container>

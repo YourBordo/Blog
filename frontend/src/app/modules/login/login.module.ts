@@ -6,6 +6,7 @@ import {UserService} from "../../services/user.service";
 import {StorageService} from "../../services/storage.service";
 import {FormsModule} from "@angular/forms";
 import {APIInterceptor} from "../../interseptors/api-interceptor";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {APIInterceptor} from "../../interseptors/api-interceptor";
   imports: [
     CommonModule,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [UserService, StorageService, APIInterceptor],
   exports: [LoginComponent]

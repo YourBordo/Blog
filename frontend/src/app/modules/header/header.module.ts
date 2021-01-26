@@ -1,21 +1,22 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {BrowserModule} from "@angular/platform-browser";
-import {RegistrationComponent} from "./components/registration.component";
-import {FormsModule} from "@angular/forms";
+import {HeaderComponent} from "./components/header.component";
 import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
-    RegistrationComponent
+    HeaderComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
-    FormsModule,
     RouterModule
   ],
   providers: [],
-  exports: [RegistrationComponent]
+  exports: [HeaderComponent]
 })
-export class RegistrationModule {}
+
+export class HeaderModule {
+
+}

@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Comment} from "../../../models/comment";
 import {UserService} from "../../../services/user.service";
 import {ArticleStatus} from "../../../models/enums/article-status";
+import {StorageService} from "../../../services/storage.service";
 
 @Component({
   selector: 'article',
@@ -14,7 +15,6 @@ import {ArticleStatus} from "../../../models/enums/article-status";
 
 export class ArticleComponent implements OnInit {
 
-  public CURRENT_USER_ID: number = 1;
 
   public article: Article;
   public comments: Comment[];
@@ -23,7 +23,8 @@ export class ArticleComponent implements OnInit {
 
   constructor(private articleService: ArticleService,
               private userService: UserService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              public storageService: StorageService) {
     this.currentArticleId = activatedRoute.snapshot.params['id'];
   }
 
@@ -32,16 +33,13 @@ export class ArticleComponent implements OnInit {
     this.articleService.getArticle(this.currentArticleId).subscribe(article1 => {
       this.article = article1;
       this.comments = article1.comments;
+      this.userService.getUserByArticleId(this.currentArticleId).subscribe(user => {
+        if (user) {
+          this.article.user = user;
+        }
+      })
     });
-
-    this.userService.getUserByArticleId(this.currentArticleId).subscribe(user => {
-      if (user) {
-        this.article.user = user;
-      }
-    })
-
   }
-
 
 
 }

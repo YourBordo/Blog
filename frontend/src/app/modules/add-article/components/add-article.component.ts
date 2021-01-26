@@ -6,6 +6,7 @@ import {DatePipe} from "@angular/common";
 import {ArticleStatus} from "../../../models/enums/article-status";
 import {User} from "../../../models/user";
 import {Router} from "@angular/router";
+import {StorageService} from "../../../services/storage.service";
 
 @Component({
   selector: 'add-article',
@@ -14,21 +15,18 @@ import {Router} from "@angular/router";
 })
 
 export class AddArticleComponent implements OnInit {
-  public currentUserId: number = 1;
   public article: Article = new Article();
-  public currentDateTime: string;
   public tagName: string;
   public status: ArticleStatus;
-
-
   myDate = new Date();
+  public currentDateTime: string;
 
 
   constructor(private articleService: ArticleService,
               private datePipe: DatePipe,
-              private router: Router,) {
+              private router: Router,
+              public storageService: StorageService) {
     this.currentDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd hh:mm');
-
   }
 
   ngOnInit(): void {
@@ -37,10 +35,10 @@ export class AddArticleComponent implements OnInit {
   }
 
   addArticle(): void {
-    if (this.currentUserId) {
+    if (this.storageService.getCurrentUser()) {
 
       this.article.user = new User();
-      this.article.user.id = this.currentUserId;
+      this.article.user.id = this.storageService.getCurrentUser().id;
       this.article.createdAt = this.currentDateTime;
       this.article.updatedAt = this.currentDateTime;
 
@@ -50,8 +48,7 @@ export class AddArticleComponent implements OnInit {
         undefined, this.article.user);
 
       this.articleService.saveArticle(currentArticle).subscribe(responseArticle => {
-        this.router.navigate(['article/' + responseArticle.id]).then(r => {
-        });
+        this.router.navigate(['article/' + responseArticle.id]).then();
       })
     }
   }

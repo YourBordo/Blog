@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     }
 
     @Override
-    public User add(User user) {//todo: check password coding
+    public User add(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForObject(backendUrl + "/api/user/", user, User.class);

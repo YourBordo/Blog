@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit} from "@angular/core";
 import {UserService} from "../../../services/user.service";
 import {CommentService} from "../../../services/comment.service";
 import {Comment} from "../../../models/comment";
+import {StorageService} from "../../../services/storage.service";
 
 @Component({
   selector: 'comments',
@@ -13,10 +14,10 @@ export class CommentsComponent implements OnInit {
 
 
   @Input() articleId: number;
-  @Input() currentUserId: number;
   comments: Comment[];
   constructor(private userService: UserService,
-              private commentService: CommentService) {
+              private commentService: CommentService,
+              public storageService: StorageService) {
   }
 
   ngOnInit(): void {
@@ -43,7 +44,7 @@ export class CommentsComponent implements OnInit {
   }
 
   deleteComment(commentToDelete: Comment): void {
-    if (this.currentUserId == commentToDelete.user.id) {
+    if (this.storageService.getCurrentUser().id == commentToDelete.user.id) {
       this.commentService.deleteComment(commentToDelete.id).subscribe();
       this.getComments();
     }

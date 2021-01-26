@@ -10,7 +10,7 @@ COMMENTS
         <ng-container *ngIf="comment.message">
         commented: {{comment.message}}
         at {{comment.createdAt | date: 'dd/MM/yyyy, H:mm'}}
-        <button *ngIf="comment.user.id == currentUserId" (click)="deleteComment(comment)">delete comment</button>
+        <button *ngIf="comment.user.id == storageService.getCurrentUser().id" (click)="deleteComment(comment)">delete comment</button>
         </ng-container>
 
       </li>
@@ -21,6 +21,5 @@ COMMENTS
 <hr/>
 <add-comment
   [articleId]="articleId"
-  [currentUserId]="currentUserId"
   (onUpdate)="onUpdate($event)">
 </add-comment>

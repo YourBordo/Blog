@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {User} from "../../../models/user";
 import {ArticleStatus} from "../../../models/enums/article-status";
 import {Article} from "../../../models/article";
+import {StorageService} from "../../../services/storage.service";
 
 @Component({
   selector: 'profile',
@@ -14,23 +15,22 @@ import {Article} from "../../../models/article";
 
 export class ProfileComponent implements OnInit {
 
-  public currentUserId: number = 1;
-  public userPageId: number;
   public user: User = new User();
-  public page: number = 0;
-  public itemsPerPageAmount: number = 1;
+  public PAGE: number = 0;
+  public ITEMS_PER_PAGE: number = 10;
 
   constructor(private articleService: ArticleService,
               private userService: UserService,
-              private activatedRoute: ActivatedRoute) {
-    this.userPageId = activatedRoute.snapshot.params['id'];
+              private activatedRoute: ActivatedRoute,
+              public storageService: StorageService) {
+    this.user.id = activatedRoute.snapshot.params['id'];
 
   }
 
   ngOnInit(): void {
-    this.userService.getUser(this.userPageId).subscribe(responseUser => {
+    this.userService.getUser(this.user.id).subscribe(responseUser => {
       this.user = responseUser;
-      if (!this.currentUserId) {
+      if (!this.storageService.getCurrentUser()) {
         this.removeDraftArticles();
       }
     })

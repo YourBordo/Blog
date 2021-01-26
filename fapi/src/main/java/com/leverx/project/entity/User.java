@@ -9,8 +9,17 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    private String createdAt;
     private List<Comment> comments;
     private List<Article> articles;
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public List<Comment> getComments() {
         return comments;

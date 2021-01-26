@@ -25,6 +25,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "created_at")
+    private String createdAt;
+
     @JsonManagedReference(value = "comment-user")
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
@@ -32,6 +35,14 @@ public class User {
     @JsonManagedReference(value = "article-user")
     @OneToMany(mappedBy = "user")
     private List<Article> articles;
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public List<Comment> getComments() {
         return comments;

@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {ArticleModule} from "./modules/article/article.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ArticleRedactionModule} from "./modules/article-redaction/article-redaction.module";
-import {EnterModule} from "./modules/enter/enter.module";
+import {HeaderModule} from "./modules/header/header.module";
 import {ForgotPasswordModule} from "./modules/forgot-password/forgot-password.module";
 import {LoginModule} from "./modules/login/login.module";
 import {ProfileModule} from "./modules/profile/profile.module";
@@ -16,7 +16,7 @@ import {WallModule} from "./modules/wall/wall.module";
 import {RouterModule, Routes} from "@angular/router";
 import {ArticleComponent} from "./modules/article/components/article.component";
 import {ArticleRedactionComponent} from "./modules/article-redaction/components/article-redaction.component";
-import {EnterComponent} from "./modules/enter/components/enter.component";
+import {HeaderComponent} from "./modules/header/components/header.component";
 import {ForgotPasswordComponent} from "./modules/forgot-password/components/forgot-password.component";
 import {LoginComponent} from "./modules/login/components/login.component";
 import {ProfileComponent} from "./modules/profile/components/profile.component";
@@ -31,23 +31,23 @@ import {AddArticleModule} from "./modules/add-article/add-article.module";
 import {AddArticleComponent} from "./modules/add-article/components/add-article.component";
 import {TagsModule} from "./modules/tags/tags.module";
 import {APIInterceptor} from "./interseptors/api-interceptor";
-import {AuthService} from "./services/auth.service";
-import {StorageService} from "./services/storage.service";
+import {FooterModule} from "./modules/footer/footer.module";
 
-const appRoutes: Routes =[
-  { path: 'article/:id', component: ArticleComponent},
-  { path: 'article/:id/redact', component: ArticleRedactionComponent},
-  { path: 'enter', component: EnterComponent },
-  { path: 'forgot', component: ForgotPasswordComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'profile/:id', component: ProfileComponent},
-  { path: 'create/article', component: AddArticleComponent},
-  { path: 'registration', component: RegistrationComponent},
-  { path: 'search', component: SearchComponent},
-  { path: 'wall', component: WallComponent},
-  { path: '**', component: NotFoundComponent},
+const appRoutes: Routes = [
+  {path: 'article/:id', component: ArticleComponent},
+  {path: 'article/:id/redact', component: ArticleRedactionComponent},
+  {path: 'enter', component: HeaderComponent},
+  {path: 'forgot', component: ForgotPasswordComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'profile/:id', component: ProfileComponent},
+  {path: 'create/article', component: AddArticleComponent},
+  {path: 'registration', component: RegistrationComponent},
+  {path: 'search', component: SearchComponent},
+  {path: 'wall', component: WallComponent},
+  {path: '**', component: NotFoundComponent},
 
 ];
+
 @NgModule({
   declarations: [
     AppComponent
@@ -55,7 +55,6 @@ const appRoutes: Routes =[
   imports: [
     ArticleModule,
     ArticleRedactionModule,
-    EnterModule,
     ForgotPasswordModule,
     LoginModule,
     ProfileModule,
@@ -71,7 +70,8 @@ const appRoutes: Routes =[
     AddArticleModule,
     TagsModule,
     RouterModule.forRoot(appRoutes),
-
+    FooterModule,
+    HeaderModule
 
   ],
   providers: [APIInterceptor, {
@@ -79,13 +79,8 @@ const appRoutes: Routes =[
     useClass: APIInterceptor,
     multi: true
   },
-    // AuthService, {
-    //   provide: APP_INITIALIZER,
-    //   useFactory: (storageService: StorageService) => () => storageService.getCurrentUser(),
-    //   deps: [AuthService],
-    //   multi: true
-    // }
-    ],
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
