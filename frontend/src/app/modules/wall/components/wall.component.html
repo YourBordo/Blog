@@ -1,20 +1,22 @@
-WALL
-
 <ng-container *ngIf="articles.length">
   <ng-container *ngFor="let article of articles
     | paginate: { itemsPerPage: ITEMS_PER_PAGE, currentPage: PAGE }">
-    <ul>
-      <li>
+    <div class="card">
+      <p class="title">{{article.title}}</p>
+      <p class="upated">last update: {{article.updatedAt | date: 'dd/MM/yyyy, H:mm'}}</p>
+      <p>{{article.articleText}}</p>
+      <p>
         <button [routerLink]="['/article', article.id]" routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact:true}">
-          title: {{article.title}}
+                [routerLinkActiveOptions]="{exact:true}">read
         </button>
-        text: {{article.articleText}}
-        status: {{article.articleStatus}}
-      </li>
-    </ul>
+      </p>
+    </div>
   </ng-container>
-  <pagination-controls (pageChange)="PAGE = $event"></pagination-controls>
-  <input type="number" [(ngModel)]="ITEMS_PER_PAGE" placeholder="set items per page">
-
+  <div class="all-pagination">
+    <pagination-controls class="my-pagination" (pageChange)="PAGE = $event"></pagination-controls>
+  </div>
+  <input class="pagination-number" type="number" [(ngModel)]="ITEMS_PER_PAGE" placeholder="set items per page">
 </ng-container>
+
+<div class="custom-select" style="width:200px;">
+</div>
