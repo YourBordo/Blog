@@ -32,7 +32,7 @@ public class TagServiceImpl implements TagService {
             int count;
             HashMap<String, Integer> cloud = new HashMap<>();
             for (Tag tag : optionalTags.get()) {
-                count = tagRepository.countAllByTagName(tag.getTagName());
+                count = tag.getArticles().size();
                 cloud.put(tag.getTagName(), count);
             }
             return cloud;

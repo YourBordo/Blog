@@ -32,7 +32,7 @@ public class Article {
     private ArticleStatus articleStatus;
 
     @JsonManagedReference(value = "comment-article")
-    @OneToMany(mappedBy = "article")
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
     private List<Comment> comments;
 
     @JsonBackReference(value = "article-user")

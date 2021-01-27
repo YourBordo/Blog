@@ -29,11 +29,11 @@ public class User {
     private String createdAt;
 
     @JsonManagedReference(value = "comment-user")
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Comment> comments;
 
     @JsonManagedReference(value = "article-user")
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Article> articles;
 
     public String getCreatedAt() {
