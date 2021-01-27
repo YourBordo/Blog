@@ -1,12 +1,14 @@
 <ng-container *ngIf="articles.length">
   <ng-container *ngFor="let article of articles
     | paginate: { itemsPerPage: ITEMS_PER_PAGE, currentPage: PAGE }">
-    <div class="card">
+
+
+        <div class="card">
       <p class="title">{{article.title}}</p>
       <p class="upated">last update: {{article.updatedAt | date: 'dd/MM/yyyy, H:mm'}}</p>
       <p>{{article.articleText}}</p>
       <p>
-        <button [routerLink]="['/article', article.id]" routerLinkActive="active"
+        <button class="read" [routerLink]="['/article', article.id]" routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact:true}">read
         </button>
       </p>
@@ -18,5 +20,4 @@
   <input class="pagination-number" type="number" [(ngModel)]="ITEMS_PER_PAGE" placeholder="set items per page">
 </ng-container>
 
-<div class="custom-select" style="width:200px;">
-</div>
+

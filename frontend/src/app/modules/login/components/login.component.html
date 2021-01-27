@@ -1,72 +1,32 @@
 <ng-container *ngIf="!storageService.getCurrentUser()">
-</ng-container>
-<section class="u-clearfix u-section-1 " id="sec-0a68">
-  <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-      <div class="u-layout">
-        <div class="u-layout-row">
-          <div class="img_register u-container-style u-layout-cell u-size-30 u-layout-cell-1">
-            <div class="u-container-layout u-valign-bottom u-container-layout-1">
-              <img class="u-image u-image-round u-radius-41 u-image-1"
-                   src="images/fcdeaf0d7753f2f4ab0faaf66af8710f7ac9637dbeb9f3e6ef181e4b6e535a90e0904186542e99c0ed84ddd52e2d17a560de771fabda02f085209f_1280.png"
-                   data-image-width="1276" data-image-height="1280">
-            </div>
-          </div>
-          <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1 grid ">
-            <div class="u-container-layout u-container-layout-1 ">
-              <h3 class="u-text u-text-default u-text-1">Welcome</h3>
-              <div class="u-form u-form-1">
-                <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
-                      style="padding: 10px" source="custom" name="form">
-                  <div class="u-form-group u-form-name">
-                    <label for="name-547b" class="u-form-control-hidden u-label">Email</label>
-                    <input (focus)="showCheckYourSetDataAlert = false"
-                           type="email" class="form-control"
-                           [(ngModel)]="loginModel.username" [ngModelOptions]="{standalone: true}" id="name-547b" placeholder="Email" name="Email-1"
-                           class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-33 u-white"
-                           required="">
-                  </div>
-                  <div class="u-form-email u-form-group">
-                    <label for="email-547b" class="u-form-control-hidden u-label">Password</label>
-                    <input (focus)="showCheckYourSetDataAlert = false"
-                           type="password" class="form-control"
-                           [(ngModel)]="loginModel.password" [ngModelOptions]="{standalone: true}" id="email-547b" placeholder="Password"
-                           class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-33 u-white"
-                           required="">
-                  </div>
-                  <div class="u-align-center u-form-group u-form-submit">
-                    <a href="#"
-                       class="u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-2-dark-1 u-palette-2-dark-2 u-radius-50 u-btn-1">LOGIN<br>
-                    </a>
-                    <input type="submit" value="submit" (click)="onSubmit()" class="u-form-control-hidden">
-                  </div>
-                  <div class="grid1">
-                    <div class="u-custom-font u-heading-font u-text ">
-                      <a
-                        class="u-active-none sign u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2"
-                        [routerLink]="['/registration']" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{exact:true}">Sign UP</a>
-                    </div>
-                    <div class="u-custom-font u-heading-font u-text  account ">Don`t have an account?</div>
-                    <div class="u-custom-font u-heading-font u-text ">
-                      <a
-                        class="u-active-none register u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-3"
-                        [routerLink]="['/wall']" routerLinkActive="active"
-                        [routerLinkActiveOptions]="{exact:true}" data-page-id="47481747">Enter without registration</a>
-                    </div>
-                  </div>
-                </form>
-                <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent.</div>
-                <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then
-                  try again.
-                </div>
-                <input type="hidden" value="" name="recaptchaResponse">
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="container">
+    <h1>Welcome</h1>
+    <p>Please fill in this form to enter.</p>
+    <hr>
+    <label for="email"><b>Email</b></label>
+    <input [(ngModel)]="loginModel.username" [ngModelOptions]="{standalone: true}" type="text" placeholder="Enter Email"
+           name="email" id="email" required>
+    <label for="psw"><b>Password</b></label>
+    <input [(ngModel)]="loginModel.password" [ngModelOptions]="{standalone: true}" type="password"
+           placeholder="Enter Password" name="psw" id="psw" required>
+    <hr>
+    <p>You always can enter without login!
+      <a
+        [routerLink]="['/wall']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}">Let's go
+      </a>.
+    </p>
+    <button type="submit" (click)="onSubmit()" class="logInButton" [routerLink]="['/wall']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact:true}">Log in
+    </button>
   </div>
-</section>
+  <div class="container signUp">
+    <p>Don’t have an account?
+      <a
+        [routerLink]="['/registration']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}">Log in
+      </a>.
+    </p>
+  </div>
+</ng-container>

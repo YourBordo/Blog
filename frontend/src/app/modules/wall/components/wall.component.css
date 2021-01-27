@@ -3,17 +3,22 @@
   max-width: 1000px;
   margin: auto;
   text-align: center;
-  font-family: arial;
+  font-family: "Times New Roman";
 }
+
 .title {
   color: #575757;
-  font-size: 50px;
+  font-size: 30px;
 
+}
+
+.read {
+  font-family: "Times New Roman";
 }
 
 .upated {
   color: grey;
-  font-size: 22px;
+  font-size: 15px;
 }
 
 .card button {
@@ -38,14 +43,15 @@
   max-width: 1000px;
   margin: auto;
   text-align: center;
-  font-family: arial;
+  font-family: "Times New Roman";
 
 }
-.all-pagination{
+
+.all-pagination {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 1000px;
   margin: auto;
   text-align: center;
-  font-family: arial;
+  font-family: "Times New Roman";
 }
 

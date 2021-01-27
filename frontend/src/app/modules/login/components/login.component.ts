@@ -13,7 +13,6 @@ import {Router} from "@angular/router";
 export class LoginComponent{
 
   public loginModel: Login = {};
-  public showCheckYourSetDataAlert: boolean = false;
 
   constructor( public storageService: StorageService,
                private userService: UserService,
@@ -33,11 +32,7 @@ export class LoginComponent{
             });
         }
       }, (error) => {
-        if (error.status === 401) {
-          this.showCheckYourSetDataAlert = true;
-        } else {
           alert(error.message);
-        }
       });
 
   }

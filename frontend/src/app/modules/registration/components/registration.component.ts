@@ -16,7 +16,6 @@ export class RegistrationComponent {
 
   public userModel: User = new User();
   public loginModel: Login = {};
-  public showCheckYourSetDataAlert: boolean = false;
   myDate = new Date();
 
 
@@ -33,11 +32,7 @@ export class RegistrationComponent {
     this.userService.addUser(this.userModel).subscribe(user => {
       this.authorize();
     }, (error) => {
-      if (error.status === 401) {
-        this.showCheckYourSetDataAlert = true;
-      } else {
         alert(error.message);
-      }
     });
   }
 
@@ -54,11 +49,7 @@ export class RegistrationComponent {
             });
         }
       }, (error) => {
-        if (error.status === 401) {
-          this.showCheckYourSetDataAlert = true;
-        } else {
           alert(error.message);
-        }
       });
 
   }

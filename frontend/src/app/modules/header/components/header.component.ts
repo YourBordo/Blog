@@ -4,7 +4,8 @@ import {StorageService} from "../../../services/storage.service";
 @Component({
   selector: 'header-module',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+
 })
 
 export class HeaderComponent   {
