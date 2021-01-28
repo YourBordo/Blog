@@ -3,6 +3,8 @@ package com.leverx.project.service.impl;
 import com.leverx.project.entity.Tag;
 import com.leverx.project.repository.TagRepository;
 import com.leverx.project.service.TagService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -41,8 +43,13 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public Tag add(Tag tag) {
-        return tagRepository.save(tag);
+    public ResponseEntity<Tag> add(Tag tag) {
+        try{
+            return ResponseEntity.ok(tagRepository.save(tag));
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override

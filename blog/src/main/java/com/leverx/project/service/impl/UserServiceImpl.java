@@ -5,6 +5,8 @@ import com.leverx.project.repository.ArticleRepository;
 import com.leverx.project.repository.CommentRepository;
 import com.leverx.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.leverx.project.entity.User;
@@ -34,13 +36,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(long id) {
-        userRepository.deleteById(id);
+    public ResponseEntity<User> delete(long id) {
+        try{
+            userRepository.deleteById(id);
+            return new ResponseEntity<>(new User(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(new User(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
-    public User add(User user) {
-        return userRepository.save(user);
+    public ResponseEntity<User> add(User user) {
+        try{
+            return ResponseEntity.ok(userRepository.save(user));
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.leverx.project.controller;
 
 import com.leverx.project.entity.Tag;
 import com.leverx.project.service.TagService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class TagController {
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Tag createTag(@RequestBody Tag tag) {
+    public ResponseEntity<Tag> createTag(@RequestBody Tag tag) {
         return tagService.add(tag);
     }
 

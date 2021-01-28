@@ -5,6 +5,8 @@ import com.leverx.project.repository.ArticleRepository;
 import com.leverx.project.repository.CommentRepository;
 import com.leverx.project.repository.UserRepository;
 import com.leverx.project.service.CommentService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -45,12 +47,23 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void delete(long id) {
-        commentRepository.deleteById(id);
+    public ResponseEntity delete(long id) {
+        try{
+            commentRepository.deleteById(id);
+            return new ResponseEntity(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override
-    public Comment add(Comment comment) {
-        return commentRepository.save(comment);
+    public ResponseEntity<Comment> add(Comment comment) {
+        try{
+            return ResponseEntity.ok(commentRepository.save(comment));
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 }

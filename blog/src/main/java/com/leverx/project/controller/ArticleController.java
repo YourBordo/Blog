@@ -63,18 +63,18 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public Article updateArticle(@RequestBody Article article) {
+    public ResponseEntity<Article> updateArticle(@RequestBody Article article) {
         return articleService.update(article);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Article createArticle(@RequestBody Article article) {
+    public ResponseEntity<Article> createArticle(@RequestBody Article article) {
         return articleService.add(article);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteArticle(@PathVariable(name = "id") long id) {
-        articleService.delete(id);
+    public ResponseEntity deleteArticle(@PathVariable(name = "id") long id) {
+        return articleService.delete(id);
     }
 
 }

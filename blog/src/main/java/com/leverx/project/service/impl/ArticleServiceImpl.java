@@ -10,6 +10,8 @@ import com.leverx.project.service.ArticleService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -50,9 +52,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article update(Article article) {
-        articleRepository.deleteById(article.getId());
-        return articleRepository.save(article);
+    public ResponseEntity<Article> update(Article article) {
+        try{
+            articleRepository.deleteById(article.getId());
+            return ResponseEntity.ok(articleRepository.save(article));
+        }catch (Exception e){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override
@@ -63,8 +70,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article add(Article article) {
-        return articleRepository.save(article);
+    public ResponseEntity<Article> add(Article article) {
+        try{
+            return ResponseEntity.ok(articleRepository.save(article));
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override
@@ -75,8 +87,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void delete(long id) {
-        articleRepository.deleteById(id);
+    public ResponseEntity delete(long id) {
+        try{
+            articleRepository.deleteById(id);
+            return new ResponseEntity(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override

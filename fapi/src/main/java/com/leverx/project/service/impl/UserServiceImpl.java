@@ -2,20 +2,24 @@ package com.leverx.project.service.impl;
 
 import com.leverx.project.entity.User;
 import com.leverx.project.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Service("customUserDetailsService")
-public class UserServiceImpl implements UserService, UserDetailsService{
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Value(value = "${backend.server.url}")
     private String backendUrl;
@@ -55,16 +59,25 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     }
 
     @Override
-    public User add(User user) {
+    public ResponseEntity<User> add(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject(backendUrl + "/api/user/", user, User.class);
+        try {
+            return new ResponseEntity<>(restTemplate.postForObject(backendUrl + "/api/user/", user, User.class), HttpStatus.OK);
+        } catch (HttpStatusCodeException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
-    public void delete(long id) {
+    public ResponseEntity delete(long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(backendUrl + "/api/user/" + id, User.class);
+        try {
+            restTemplate.delete(backendUrl + "/api/user/" + id, User.class);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (HttpStatusCodeException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override

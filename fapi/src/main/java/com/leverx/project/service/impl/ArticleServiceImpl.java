@@ -1,10 +1,14 @@
 package com.leverx.project.service.impl;
 
 import com.leverx.project.entity.Article;
+import com.leverx.project.entity.Comment;
 import com.leverx.project.pagination.PageWrapper;
 import com.leverx.project.service.ArticleService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -38,9 +42,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void update(Article article) {
+    public ResponseEntity update(Article article) {
         RestTemplate restTemplate = new RestTemplate();
-         restTemplate.put(backendUrl + "/api/article/", article, Article.class);
+        try {
+            restTemplate.put(backendUrl + "/api/article/", article, Article.class);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (HttpStatusCodeException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
@@ -51,9 +60,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article add(Article article) {
+    public ResponseEntity<Article> add(Article article) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject(backendUrl + "/api/article/", article, Article.class);
+        try {
+            return new ResponseEntity<>(restTemplate.postForObject(backendUrl + "/api/article/", article, Article.class), HttpStatus.OK);
+        } catch (HttpStatusCodeException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override
@@ -64,9 +78,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void delete(long id) {
+    public ResponseEntity delete(long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(backendUrl + "/api/article/" + id, Article.class);
+        try {
+            restTemplate.delete(backendUrl + "/api/article/" + id, Article.class);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (HttpStatusCodeException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override

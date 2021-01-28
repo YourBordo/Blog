@@ -1,9 +1,13 @@
 package com.leverx.project.service.impl;
 
 import com.leverx.project.entity.Tag;
+import com.leverx.project.entity.User;
 import com.leverx.project.service.TagService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -27,9 +31,13 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public Tag add(Tag tag) {
+    public ResponseEntity<Tag> add(Tag tag) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject(backendUrl + "/api/tag/", tag, Tag.class);
+        try {
+            return new ResponseEntity<>(restTemplate.postForObject(backendUrl + "/api/tag/", tag, Tag.class), HttpStatus.OK);
+        } catch (HttpStatusCodeException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override

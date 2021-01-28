@@ -1,5 +1,6 @@
 package com.leverx.project.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.leverx.project.entity.User;
 import com.leverx.project.service.UserService;
@@ -35,12 +36,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public User createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         return userService.add(user);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable(name = "id") long id) {
-        userService.delete(id);
+    public ResponseEntity deleteUser(@PathVariable(name = "id") long id) {
+        return userService.delete(id);
     }
 }

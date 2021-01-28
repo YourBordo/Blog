@@ -64,20 +64,20 @@ public class ArticleController {
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public void updateArticle(@RequestBody Article article) {
-        articleService.update(article);
+    public ResponseEntity updateArticle(@RequestBody Article article) {
+        return articleService.update(article);
     }
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Article createArticle(@RequestBody Article article) {
+    public ResponseEntity<Article> createArticle(@RequestBody Article article) {
         return articleService.add(article);
     }
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteArticle(@PathVariable(name = "id") long id) {
-        articleService.delete(id);
+    public ResponseEntity deleteArticle(@PathVariable(name = "id") long id) {
+      return   articleService.delete(id);
     }
 
 }

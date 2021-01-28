@@ -2,6 +2,7 @@ package com.leverx.project.controller;
 
 import com.leverx.project.entity.User;
 import com.leverx.project.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -45,12 +46,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public User createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         return userService.add(user);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable(name = "id") long id) {
-        userService.delete(id);
+    public ResponseEntity deleteUser(@PathVariable(name = "id") long id) {
+        return userService.delete(id);
     }
 }
