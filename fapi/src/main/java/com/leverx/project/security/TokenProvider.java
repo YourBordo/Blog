@@ -1,5 +1,7 @@
 package com.leverx.project.security;
 
+import com.leverx.project.entity.User;
+import com.leverx.project.service.impl.EmailServiceImpl;
 import io.jsonwebtoken.*;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,11 +21,17 @@ import java.util.stream.Collectors;
 @Component
 public class TokenProvider implements Serializable {
 
+    private final EmailServiceImpl emailService;
+
+    public TokenProvider(EmailServiceImpl emailService) {
+        this.emailService = emailService;
+    }
+
     public String getUserEmailFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 
-    public Date getExpirationDateFromToken(String token){
+    public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
     }
 
@@ -39,7 +47,7 @@ public class TokenProvider implements Serializable {
                 .getBody();
     }
 
-    private boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
@@ -52,9 +60,19 @@ public class TokenProvider implements Serializable {
                 .setSubject(authentication.getName())
                 .claim(SecurityJwtConstants.AUTHORITIES_KEY, authorities)
                 .signWith(SignatureAlgorithm.HS256, SecurityJwtConstants.SIGNING_KEY)
-                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setIssuedAt(new Date(System.currentTimeMillis()))                              //5 hours
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityJwtConstants.ACCESS_TOKEN_VALIDITY_SECONDS * 1000))
                 .compact();
+    }
+
+    public String generateEmailToken(User user) {
+        String token = Jwts.builder()
+                .setSubject(user.getEmail())
+                .setExpiration(new Date(System.currentTimeMillis() + SecurityJwtConstants.EMAIL_TOKEN_SECONDS * 1000))
+                .signWith(SignatureAlgorithm.HS256, SecurityJwtConstants.SIGNING_KEY)
+                .compact();
+        emailService.sendSimpleMessage(user.getEmail(), "Blog application: your submit string", token);
+        return token;
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
@@ -66,7 +84,7 @@ public class TokenProvider implements Serializable {
         final JwtParser jwtParser = Jwts.parser().setSigningKey(SecurityJwtConstants.SIGNING_KEY);
         final Jws<Claims> claimsJws = jwtParser.parseClaimsJws(token);
         final Claims claims = claimsJws.getBody();
-        final Collection<? extends  GrantedAuthority> authorities = Arrays.stream(claims.get(SecurityJwtConstants.AUTHORITIES_KEY).toString().split(","))
+        final Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get(SecurityJwtConstants.AUTHORITIES_KEY).toString().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
         return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);

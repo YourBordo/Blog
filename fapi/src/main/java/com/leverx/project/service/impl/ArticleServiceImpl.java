@@ -45,7 +45,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> findLike(String title) {
         RestTemplate restTemplate = new RestTemplate();
-        Article[] articles = restTemplate.getForObject(backendUrl + "/api/article/tagName=" + title, Article[].class);
+        Article[] articles = restTemplate.getForObject(backendUrl + "/api/article/title=" + title, Article[].class);
         return articles == null ? Collections.emptyList() : Arrays.asList(articles);
     }
 
@@ -71,8 +71,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public PageWrapper<Article> findAll(int pageNumber, int pageSize, String sortBy, String order) {
         RestTemplate restTemplate = new RestTemplate();
-        String path = backendUrl + "/api/posts" + "?page=" + pageNumber + "&size=" + pageSize
-                + "&sort=" + sortBy + "&order=" + order;
+        String path = backendUrl + "/api/article/" + pageNumber + '/' + pageSize
+                + '/' + sortBy + '/' + order;
         return restTemplate.getForObject(path, PageWrapper.class);
 
     }
@@ -80,8 +80,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public PageWrapper<Article> findAllByUserId(long id, int pageNumber, int pageSize, String sortBy, String order) {
         RestTemplate restTemplate = new RestTemplate();
-        String path = backendUrl + "/api/posts?user=" + id + "&page=" + pageNumber + "&size=" + pageSize
-                + "&sort=" + sortBy + "&order=" + order;
+        String path = backendUrl + "/api/article/" + id + '/' + pageNumber + '/' + pageSize
+                + '/' + sortBy + '/' + order;
         return restTemplate.getForObject(path, PageWrapper.class);
     }
 

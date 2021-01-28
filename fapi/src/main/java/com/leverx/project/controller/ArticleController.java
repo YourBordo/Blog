@@ -4,6 +4,7 @@ import com.leverx.project.entity.Article;
 import com.leverx.project.pagination.PageWrapper;
 import com.leverx.project.service.ArticleService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,16 +62,19 @@ public class ArticleController {
         return articleService.findLike(title);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public void updateArticle(@RequestBody Article article) {
         articleService.update(article);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Article createArticle(@RequestBody Article article) {
         return articleService.add(article);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteArticle(@PathVariable(name = "id") long id) {
         articleService.delete(id);

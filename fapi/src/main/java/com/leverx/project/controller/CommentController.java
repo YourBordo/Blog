@@ -2,6 +2,7 @@ package com.leverx.project.controller;
 
 import com.leverx.project.entity.Comment;
 import com.leverx.project.service.CommentService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,11 +32,13 @@ public class CommentController {
         return commentService.findByArticleId(id);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Comment addComment(@RequestBody Comment comment) {
         return commentService.add(comment);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteCommentById(@PathVariable(name = "id") long id) {
         commentService.delete(id);

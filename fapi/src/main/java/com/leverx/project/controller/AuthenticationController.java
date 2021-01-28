@@ -1,7 +1,9 @@
 package com.leverx.project.controller;
 
 import com.leverx.project.entity.AuthToken;
+import com.leverx.project.entity.EmailToken;
 import com.leverx.project.entity.LoginUser;
+import com.leverx.project.entity.User;
 import com.leverx.project.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/token")
 public class AuthenticationController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+    private final TokenProvider tokenProvider;
 
-    @Autowired
-    private TokenProvider tokenProvider;
+    public AuthenticationController(AuthenticationManager authenticationManager, TokenProvider tokenProvider) {
+        this.authenticationManager = authenticationManager;
+        this.tokenProvider = tokenProvider;
+    }
 
     @RequestMapping(value = "/generate-token", method = RequestMethod.POST)
     public ResponseEntity register(@RequestBody LoginUser loginUser){
@@ -35,4 +39,5 @@ public class AuthenticationController {
         final String token = tokenProvider.generateToken(authentication);
         return ResponseEntity.ok(new AuthToken(token));
     }
+
 }
