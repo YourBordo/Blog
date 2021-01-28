@@ -21,7 +21,7 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository articleRepository;
     private final TagRepository tagRepository;
     private final UserRepository userRepository;
-
+//todo ResponseEntity for creating/deleting
     public ArticleServiceImpl(ArticleRepository articleRepository, TagRepository tagRepository, UserRepository userRepository) {
         this.articleRepository = articleRepository;
         this.tagRepository = tagRepository;
@@ -42,10 +42,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article findByTagId(long id) {
-        Optional<Article> optionalArticle =
-                Optional.ofNullable(tagRepository.findById(id).getArticles().get(0));
-        return optionalArticle.orElse(null);
+    public List<Article> findByTagId(long id) {
+        Optional<List<Article>> optionalArticles =
+                Optional.ofNullable(tagRepository.findById(id).getArticles());
+
+        return optionalArticles.orElse(null);
     }
 
     @Override

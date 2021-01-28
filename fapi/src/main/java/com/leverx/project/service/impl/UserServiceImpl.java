@@ -2,7 +2,6 @@ package com.leverx.project.service.impl;
 
 import com.leverx.project.entity.User;
 import com.leverx.project.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

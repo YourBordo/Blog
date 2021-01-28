@@ -11,11 +11,11 @@ import {StorageService} from "../../../services/storage.service";
   styleUrls: ['./search.component.css']
 })
 
-export class SearchComponent{
+export class SearchComponent {
 
   public text: string;
   public isTag: boolean = true;
-  public articles: Article[] =[];
+  public articles: Article[] = [];
   public page: number = 0;
   public itemsPerPageAmount: number = 1;
 
@@ -24,18 +24,31 @@ export class SearchComponent{
               public storageService: StorageService) {
   }
 
-  search(): void{
-    this.articles = [];
-    if(this.isTag){
-      this.tagService.getTagsLike(this.text).subscribe(responseTags =>{
-        responseTags.forEach(tag=>{
-          this.articleService.getArticleByTagId(tag.id).subscribe(responseArticle =>{
-            this.articles.push(responseArticle);
+  search(): void {
+    if (this.isTag) {
+      this.tagService.getTagsLike(this.text).subscribe(responseTags => {
+        responseTags.forEach(tag => {
+          this.articleService.getArticlesByTagId(tag.id).subscribe(responseArticles => {
+            if (!this.articles.length) {
+              this.articles = responseArticles;
+            }else {
+              this.articles.concat(responseArticles);
+            }
+          })
+        });
+
+        let idNumber: number = 0;
+        this.articles.forEach(article => {
+          idNumber = article.id;
+          this.articles.forEach(article2 => {
+            if (article2.id == idNumber && article != article2) {
+              this.articles.splice(this.articles.indexOf(article2), 1);
+            }
           })
         })
       })
-    }else{
-      this.articleService.getArticlesLike(this.text).subscribe(responseArticles=>{
+    } else {
+      this.articleService.getArticlesLike(this.text).subscribe(responseArticles => {
         this.articles = responseArticles;
       })
     }

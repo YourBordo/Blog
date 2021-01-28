@@ -31,9 +31,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article findByTagId(long id) {
+    public List<Article> findByTagId(long id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendUrl + "/api/article/tag/" + id, Article.class);
+        Article[] articles = restTemplate.getForObject(backendUrl + "/api/article/tag/" + id, Article[].class);
+        return articles == null ? Collections.emptyList() : Arrays.asList(articles);
     }
 
     @Override

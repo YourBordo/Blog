@@ -25,8 +25,8 @@ export class ArticleService {
     return this.http.get<Article[]>(this.url + "user/" + userId);
   }
 
-  public getArticleByTagId(tagId: number): Observable<Article> {
-    return this.http.get<Article>(this.url + "tag/" + tagId);
+  public getArticlesByTagId(tagId: number): Observable<Article[]> {
+    return this.http.get<Article[]>(this.url + "tag/" + tagId);
   }
 
   //check it

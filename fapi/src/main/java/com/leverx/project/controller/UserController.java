@@ -41,7 +41,6 @@ public class UserController {
     @GetMapping("/current")
     public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // todo exclude password from model!
         return userService.find(((org.springframework.security.core.userdetails.User) authentication.getPrincipal()).getUsername());
     }
 
