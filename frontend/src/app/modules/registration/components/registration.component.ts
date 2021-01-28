@@ -15,43 +15,35 @@ import {DatePipe} from "@angular/common";
 export class RegistrationComponent {
 
   public userModel: User = new User();
-  public loginModel: Login = {};
-  myDate = new Date();
-
+  public submit: boolean = false;
+  public validData: boolean = true;
+  public suchEmailAlreadyExists: boolean = false;
 
   constructor(public storageService: StorageService,
-              private userService: UserService,
-              private router: Router,
-              private datePipe: DatePipe) {
-    this.userModel.createdAt = this.datePipe.transform(this.myDate, 'yyyy-MM-dd hh:mm');
+              private userService: UserService
+              ) {
   }
 
   public onSubmit(): void {
-    this.loginModel.password = this.userModel.password;
-    this.loginModel.username = this.userModel.email;
-    this.userService.addUser(this.userModel).subscribe(user => {
-      this.authorize();
-    }, (error) => {
-        alert(error.message);
-    });
-  }
-
-  authorize(): void {
-    this.userService.generateToken(this.loginModel)
-      .subscribe((authToken: AuthToken) => {
-        if (authToken.token) {
-          this.storageService.setToken(authToken.token);
-          //console.log(this.loginModel);
-          this.userService.getAuthorizedUser()
-            .subscribe((user: User) => {
-              this.storageService.setCurrentUser(user);
-              this.router.navigate(['profile/' + user.id]).then();
-            });
+    if (this.userModel.firstName && this.userModel.lastName && this.userModel.email && this.userModel.password) {
+      this.validData = true;
+      this.userService.getUserByEmail(this.userModel.email).subscribe(responseUser => {
+        if (responseUser) {
+          this.suchEmailAlreadyExists = true;
+        }else{
+          this.suchEmailAlreadyExists = false;
+          this.submit = true;
+          this.userService.generateEmailToken(this.userModel).subscribe(responseToken=>{
+           this.storageService.currentEmailToken = responseToken.token;
+          })
         }
-      }, (error) => {
-          alert(error.message);
-      });
+      })
 
+    }else {
+      this.submit =false;
+      this.validData = false;
+    }
   }
+
 
 }

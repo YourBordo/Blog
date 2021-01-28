@@ -21,6 +21,9 @@ export class UserService {
   public getUserByCommentId(id: number): Observable<User> {
     return this.http.get<User>(this.url + "comment/" + id);
   }
+  public getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(this.url + "email/" + email);
+  }
 
   public addUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user);
@@ -33,6 +36,11 @@ export class UserService {
   public generateToken(login: Login): Observable<AuthToken> {
     return this.http.post<AuthToken>("/api/token/generate-token", login);
   }
+
+  public generateEmailToken(user: User): Observable<AuthToken> {
+    return this.http.post<AuthToken>("/api/mail/generate-email-token", user);
+  }
+
 
   public getAuthorizedUser(): Observable<User> {
     return this.http.get<User>("/api/user/current");

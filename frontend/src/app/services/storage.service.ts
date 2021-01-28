@@ -8,6 +8,16 @@ export class StorageService {
   private readonly CURRENT_USER: string = "currentUser";
 
   private currentUser: User;
+  private _currentEmailToken: string;
+
+
+  get currentEmailToken(): string {
+    return this._currentEmailToken;
+  }
+
+  set currentEmailToken(value: string) {
+    this._currentEmailToken = value;
+  }
 
   public setToken(token: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);

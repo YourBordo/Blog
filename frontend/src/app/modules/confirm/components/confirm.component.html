@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Thank you for registration</h1>
+  <p>We sent to you confirmation code. Please enter code to finish registration.</p>
+  <hr>
+  <label for="code"><b>Code</b></label>
+  <input [(ngModel)]="code" [ngModelOptions]="{standalone: true}"
+         type="text" placeholder="Enter code" name="code" id="code" required>
+  <hr>
+  <button type="submit" class="submitButton" (click)="onSubmitCode()" [routerLink]="['/wall']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}">Continue
+  </button>
+  <div *ngIf="!codeIsValid">
+    Your code isn't valid
+  </div>
+</div>

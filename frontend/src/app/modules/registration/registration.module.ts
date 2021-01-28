@@ -4,17 +4,19 @@ import {BrowserModule} from "@angular/platform-browser";
 import {RegistrationComponent} from "./components/registration.component";
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
+import {ConfirmNodule} from "../confirm/confirm.nodule";
 
 @NgModule({
   declarations: [
     RegistrationComponent
   ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    FormsModule,
-    RouterModule
-  ],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        FormsModule,
+        RouterModule,
+        ConfirmNodule
+    ],
   providers: [],
   exports: [RegistrationComponent]
 })
