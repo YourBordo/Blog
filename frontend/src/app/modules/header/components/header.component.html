@@ -12,8 +12,9 @@
        [routerLinkActiveOptions]="{exact:true}">Blog</a>
     <a class="nav-login" [routerLink]="['/search']" routerLinkActive="active"
        [routerLinkActiveOptions]="{exact:true}">Search</a>
-    <a class="nav-login" (click)="logout()" [routerLink]="['/login']" routerLinkActive="active"
-       [routerLinkActiveOptions]="{exact:true}">Logout</a>
+
+    <a  class="nav-login hov" (click)="logout()" [routerLink]="['/login']" routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact:true}"> <img    src="https://img.icons8.com/dotty/80/000000/exit.png"/> <span class="log">Logout</span></a>
   </ng-container>
   <ng-container *ngIf="!storageService.getCurrentUser()">
     <a class="nav-login" [routerLink]="['/wall']" routerLinkActive="active"

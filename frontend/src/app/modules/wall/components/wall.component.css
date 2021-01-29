@@ -1,36 +1,86 @@
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 1000px;
-  margin: auto;
-  text-align: center;
+  width: 600px;
+  margin: 20px 30%;
+  /*text-align: center;*/
   font-family: "Times New Roman";
-}
+  border-radius: 15px;
+  display: grid;
 
+  grid-template-areas:
+    "p t t t "
+    "p u u  u "
+     "p d d d "
+    "p r r r ";
+
+}
+.card >img {
+  height: 150px;
+  width:150px;
+  border-radius: 50%;
+  grid-area: p;
+  margin-left:10%;
+  margin-top:10%;
+}
 .title {
   color: #575757;
   font-size: 30px;
+  grid-area: t;
+  margin-bottom: 0;
 
+}
+.text{
+  grid-area: d;
+  padding-bottom:0px;
+  margin-bottom: 0;
+  font-family: "Segoe UI";
+  color:#3b444b;
 }
 
 .read {
   font-family: "Times New Roman";
+  grid-area: r;
+
 }
 
-.upated {
+.updated {
   color: grey;
   font-size: 15px;
+  grid-area: u;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction:row ;
+  justify-content: space-between;
+  width:85%;
+  font-family: Roboto!important;
 }
+.img{
+  display:flex;
+  flex-direction: row;
 
+}
+.img > img  {
+  width:20px;
+  height: 20px;
+
+}
+#cal{
+  margin-top:6%;
+}
+#com{
+  margin-top:12%;
+}
 .card button {
   border: none;
   outline: 0;
-  padding: 12px;
-  color: white;
-  background-color: #c4cad8;
-  text-align: center;
+  /*padding: 12px;*/
+  color: dodgerblue;
+  background-color: white;
+  text-align: start;
   cursor: pointer;
   width: 100%;
   font-size: 18px;
+
 }
 
 .card button:hover {
@@ -38,7 +88,8 @@
 }
 
 .my-pagination /deep/ .ngx-pagination .current {
-  background: #5c8db0;
+  /*background: #5c8db0;*/
+  border-bottom:2px solid dodgerblue!important;
   box-shadow: 0 4px 8px 0 rgba(196, 202, 216, 0.2);
   max-width: 1000px;
   margin: auto;
@@ -49,9 +100,31 @@
 
 .all-pagination {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 1000px;
+  /*max-width: 1000px;*/
   margin: auto;
+  width:600px;
   text-align: center;
   font-family: "Times New Roman";
 }
 
+
+.pagination-number{
+margin-left: 51%;
+  border:none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width:40px;
+  height: 30px;
+  color:grey;
+}
+.pagination-number:active{
+  border:none!important;
+}
+h4{
+  position: fixed;
+  top:-10px;
+  left: 47%;
+  font-family: "Georgia";
+  font-size: 26px;
+  color: #575757;
+
+}
