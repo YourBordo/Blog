@@ -52,8 +52,6 @@ export class ArticleRedactionComponent {
       this.article.updatedAt = this.currentDateTime;
       this.articleService.updateArticle(this.article).subscribe(responseArticle => {
         this.article = responseArticle;
-        this.router.navigate(['article/' + this.article.id]).then(r => {
-        });
       });
     }
 

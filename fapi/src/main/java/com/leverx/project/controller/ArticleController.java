@@ -64,7 +64,7 @@ public class ArticleController {
 
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public ResponseEntity updateArticle(@RequestBody Article article) {
+    public ResponseEntity<Article> updateArticle(@RequestBody Article article) {
         return articleService.update(article);
     }
 

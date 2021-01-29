@@ -14,7 +14,7 @@ public interface ArticleService {
     Article find(long id);
     List<Article> findByUserId(long id);
     List<Article> findByTagId(long id);
-    ResponseEntity update(Article article);
+    ResponseEntity<Article> update(Article article);
     ResponseEntity<Article> add(Article article);
     PageWrapper<Article> findAll(int pageNumber, int pageSize, String sortBy, String order);
     PageWrapper<Article> findAllByUserId(long userId, int pageNumber, int pageSize,

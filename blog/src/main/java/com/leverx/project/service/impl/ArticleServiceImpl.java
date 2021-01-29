@@ -23,7 +23,6 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository articleRepository;
     private final TagRepository tagRepository;
     private final UserRepository userRepository;
-//todo ResponseEntity for creating/deleting
     public ArticleServiceImpl(ArticleRepository articleRepository, TagRepository tagRepository, UserRepository userRepository) {
         this.articleRepository = articleRepository;
         this.tagRepository = tagRepository;
@@ -54,7 +53,6 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ResponseEntity<Article> update(Article article) {
         try{
-            articleRepository.deleteById(article.getId());
             return ResponseEntity.ok(articleRepository.save(article));
         }catch (Exception e){
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

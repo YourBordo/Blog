@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class ArticleServiceImpl implements ArticleService {
@@ -42,11 +43,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ResponseEntity update(Article article) {
+    public ResponseEntity<Article> update(Article article) {
         RestTemplate restTemplate = new RestTemplate();
         try {
             restTemplate.put(backendUrl + "/api/article/", article, Article.class);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(Objects.requireNonNull(restTemplate.getForObject
+                    (backendUrl + "/api/article/" + article.getId(), Article.class)),
+            HttpStatus.OK);
         } catch (HttpStatusCodeException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -67,7 +70,6 @@ public class ArticleServiceImpl implements ArticleService {
         } catch (HttpStatusCodeException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @Override
