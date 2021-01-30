@@ -29,7 +29,6 @@ export class ArticleService {
     return this.http.get<Article[]>(this.url + "tag/" + tagId);
   }
 
-  //check it
   public getArticlesPage(page: Page<Article>): Observable<Page<Article>> {
     const params = ArticleService.getParams(page);
     return this.http.get<Page<Article>>(this.url, {params});
