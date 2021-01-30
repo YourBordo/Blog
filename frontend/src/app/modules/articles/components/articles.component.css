@@ -10,7 +10,7 @@
   grid-template-areas:
     "p t t t "
     "p u u  u "
-     "p d d d "
+    "p d d d "
     "p r r r ";
 
 }
@@ -109,7 +109,7 @@
 
 
 .pagination-number{
-margin-left: 51%;
+  margin-left: 51%;
   border:none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width:40px;

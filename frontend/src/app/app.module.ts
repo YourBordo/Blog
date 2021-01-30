@@ -32,6 +32,7 @@ import {AddArticleComponent} from "./modules/add-article/components/add-article.
 import {TagsModule} from "./modules/tags/tags.module";
 import {APIInterceptor} from "./interseptors/api-interceptor";
 import {FooterModule} from "./modules/footer/footer.module";
+import {ArticlesModule} from "./modules/articles/articles.module";
 
 const appRoutes: Routes = [
   {path: 'article/:id', component: ArticleComponent},
@@ -71,7 +72,8 @@ const appRoutes: Routes = [
     TagsModule,
     RouterModule.forRoot(appRoutes),
     FooterModule,
-    HeaderModule
+    HeaderModule,
+    ArticlesModule
 
   ],
   providers: [APIInterceptor, {

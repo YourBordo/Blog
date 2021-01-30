@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnChanges, OnInit} from "@angular/core";
 import {ArticleService} from "../../../services/article.service";
 import {UserService} from "../../../services/user.service";
 import {ActivatedRoute} from "@angular/router";
@@ -24,9 +24,7 @@ export class ProfileComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               public storageService: StorageService) {
     this.user.id = activatedRoute.snapshot.params['id'];
-
   }
-
   ngOnInit(): void {
     this.userService.getUser(this.user.id).subscribe(responseUser => {
       this.user = responseUser;

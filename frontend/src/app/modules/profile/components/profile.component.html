@@ -1,25 +1,27 @@
-PROFILE
 <ng-container *ngIf="user">
-  {{user.firstName}} {{user.lastName}}
-  <button [routerLink]="['/create/article']" routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact:true}">create new article</button>
+  <div class="card">
+    <section class="photo">
+    <img src="https://images.firstpost.com/wp-content/uploads/2020/08/Cat_Andrew-Umansky_unsplash_640.jpg"/>
+   </section>
+    <section class="info">
+      <div>
+      <h1 class="username">{{user.firstName}} {{user.lastName}}</h1>
+      <div class="line"></div>
+      </div>
+      <ng-container *ngIf="user.id == storageService.getCurrentUser().id">
+        <section class="information">
+        <div class="data"><img src="https://img.icons8.com/dotty/80/000000/calendar.png"/><span> {{user.createdAt| date: 'dd/MM/yyyy, H:mm'}}</span></div>
+        <div class="email"><img src="https://img.icons8.com/dotty/80/000000/email-sign.png"/><span>{{user.email}} </span></div>
+        </section>
+        <button [routerLink]="['/create/article']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact:true}">create new article
+        </button>
+      </ng-container>
+    </section>
 
-  <ng-container *ngIf="user.articles">
-    <ng-container *ngFor="let article of user.articles
-    | paginate: { itemsPerPage: ITEMS_PER_PAGE, currentPage: PAGE }">
-      <ul>
-        <li>
-          <button [routerLink]="['/article', article.id]" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{exact:true}">
-            title: {{article.title}}
-          </button>
-          text: {{article.articleText}}
-          status: {{article.articleStatus}}
-        </li>
-      </ul>
-    </ng-container>
-    <pagination-controls (pageChange)="PAGE = $event"></pagination-controls>
-    <input type="number" [(ngModel)]="ITEMS_PER_PAGE" placeholder="set items per page">
 
+  </div>
+  <ng-container *ngIf="user.articles.length">
+    <articles [articles]="user.articles"></articles>
   </ng-container>
 </ng-container>

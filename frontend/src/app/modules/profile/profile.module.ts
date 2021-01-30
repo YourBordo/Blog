@@ -5,19 +5,21 @@ import {ProfileComponent} from "./components/profile.component";
 import {RouterModule} from "@angular/router";
 import {NgxPaginationModule} from "ngx-pagination";
 import {FormsModule} from "@angular/forms";
+import {ArticlesModule} from "../articles/articles.module";
 
 @NgModule({
   declarations: [
     ProfileComponent
   ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    RouterModule,
-    NgxPaginationModule,
-    FormsModule
+    imports: [
+        CommonModule,
+        BrowserModule,
+        RouterModule,
+        NgxPaginationModule,
+        FormsModule,
+        ArticlesModule
 
-  ],
+    ],
   providers: [],
   exports: [ProfileComponent]
 })

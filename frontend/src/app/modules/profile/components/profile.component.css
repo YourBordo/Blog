@@ -1,0 +1,109 @@
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 600px;
+  margin: 20px 30%;
+  height: 300px;
+  text-align: center;
+  font-family: "Times New Roman";
+  border-radius: 15px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.username{
+  color: #575757;
+}
+.title {
+  color: #575757;
+  font-size: 30px;
+
+}
+
+.read {
+  font-family: "Times New Roman";
+}
+
+.upated {
+  color: grey;
+  font-size: 15px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #c4cad8;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #5c8db0;
+  box-shadow: 0 4px 8px 0 rgba(196, 202, 216, 0.2);
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+  font-family: "Times New Roman";
+
+}
+
+.all-pagination {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+  font-family: "Times New Roman";
+}
+.photo{
+  padding-left:5%;
+  padding-top:5%;
+}
+.photo >img {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+
+}
+.info{
+  margin-right:20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.data > img{
+  height:20px;
+  width:20px;
+}
+.email > img{
+  height:20px;
+  width:20px;
+}
+.line{
+  height:2px;
+  width:100px;
+  background-color: #575757;
+  margin-left :30px;
+}
+.h1{
+  margin-bottom:3px;
+}
+.information{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+button{
+  margin-bottom:30px;
+  border-radius: 15px;
+}
