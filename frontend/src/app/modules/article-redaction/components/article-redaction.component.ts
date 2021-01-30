@@ -7,6 +7,7 @@ import {DatePipe} from "@angular/common";
 import {Tag} from "../../../models/tag";
 import {ArticleStatus} from "../../../models/enums/article-status";
 import {StorageService} from "../../../services/storage.service";
+import {TagService} from "../../../services/tag.service";
 
 @Component({
   selector: 'article-redaction',
@@ -22,14 +23,16 @@ export class ArticleRedactionComponent {
   public currentDateTime: string;
   public tagName: string;
   myDate = new Date();
-
+  public validTagField: boolean = true;
+  public validArticleFields: boolean = true;
 
   constructor(private articleService: ArticleService,
               private userService: UserService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private datePipe: DatePipe,
-              public storageService: StorageService) {
+              public storageService: StorageService,
+              private tagService: TagService) {
     this.currentArticleId = activatedRoute.snapshot.params['id'];
     this.currentDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd hh:mm');
   }
@@ -48,7 +51,9 @@ export class ArticleRedactionComponent {
   }
 
   updateArticle(): void {
-    if (this.storageService.getCurrentUser().id == this.article.user.id) {
+    this.validArticleFields = this.article.title && this.article.title.length <= 255
+      && this.article.articleText && this.article.articleText.length <= 5000;
+      if (this.storageService.getCurrentUser().id == this.article.user.id && this.validArticleFields) {
       this.article.updatedAt = this.currentDateTime;
       this.articleService.updateArticle(this.article).subscribe(responseArticle => {
         this.article = responseArticle;
@@ -59,13 +64,24 @@ export class ArticleRedactionComponent {
 
   }
 
-  addTag():void {
-    let tag: Tag = new Tag();
-    tag.tagName = this.tagName;
-    this.article.tags.push(tag);
-
-  }
-   deleteTag(tagToDelete: Tag): void{
+  addTag(): void {
+    this.validTagField = this.tagName && this.tagName.length <= 15;
+    if (this.validTagField) {
+      let tag: Tag = new Tag();
+      tag.tagName = this.tagName;
+      this.tagService.getTagsLike(this.tagName).subscribe(responseTags => {
+        responseTags.forEach(responseTag=>{
+          if(this.tagName == responseTag.tagName){
+            tag = responseTag;
+          }
+        })
+      });
+      if (!this.article.tags) {
+        this.article.tags = [];
+      }
+      this.article.tags.push(tag);
+    }
+  }   deleteTag(tagToDelete: Tag): void{
     this.article.tags.forEach(tag =>{
       if(tag == tagToDelete){
         let pos: number = this.article.tags.indexOf(tag);

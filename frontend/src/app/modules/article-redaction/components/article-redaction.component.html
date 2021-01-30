@@ -2,8 +2,8 @@
   ARTICLE REDACT
 
   <ng-container *ngIf="!showRedact">
-  <button (click)="onClick()">update article</button>
-  <button (click)="deleteArticle()">delete article</button>
+    <button (click)="onClick()">update article</button>
+    <button (click)="deleteArticle()">delete article</button>
   </ng-container>
   <ng-container *ngIf="showRedact">
 
@@ -25,9 +25,9 @@
     </ng-container>
 
     <input type="text" [(ngModel)]="tagName" placeholder="add tag">
+    <div *ngIf="!validTagField"> check your tag</div>
     <button (click)="addTag()">addTag</button>
-
-  <button (click)="updateArticle()">save changes</button>
-
-</ng-container>
+    <div *ngIf="!validArticleFields">check title and text length</div>
+    <button (click)="updateArticle()">save changes</button>
+  </ng-container>
 </ng-container>

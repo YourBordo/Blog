@@ -31,23 +31,24 @@ export class ConfirmComponent {
   }
 
   public onSubmitCode(): void {
-    //add IF for time valid
-    if (this.code == this.storageService.currentEmailToken) {
-      this.codeIsValid = true;
-      this.userModel.firstName = this.user.firstName;
-      this.userModel.lastName = this.user.lastName;
-      this.userModel.email = this.user.email;
-      this.userModel.password = this.user.password;
-      this.loginModel.password = this.userModel.password;
-      this.loginModel.username = this.userModel.email;
-      this.userService.addUser(this.userModel).subscribe(user => {
-        this.authorize();
-      }, (error) => {
-        alert(error.message);
-      });
-    }else{
-      this.codeIsValid = false;
-    }
+    this.userService.isValidToken(this.storageService.currentEmailToken).subscribe(valid => {
+      if (this.code == this.storageService.currentEmailToken && valid) {
+        this.codeIsValid = true;
+        this.userModel.firstName = this.user.firstName;
+        this.userModel.lastName = this.user.lastName;
+        this.userModel.email = this.user.email;
+        this.userModel.password = this.user.password;
+        this.loginModel.password = this.userModel.password;
+        this.loginModel.username = this.userModel.email;
+        this.userService.addUser(this.userModel).subscribe(user => {
+          this.authorize();
+        }, (error) => {
+          alert(error.message);
+        });
+      } else {
+        this.codeIsValid = false;
+      }
+    });
 
 
   }

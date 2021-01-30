@@ -20,6 +20,8 @@ export class AddCommentComponent {
   text: string;
   currentDateTime: string;
   myDate = new Date();
+  public validComment: boolean = true;
+
 
   constructor(private userService: UserService,
               private commentService: CommentService,
@@ -31,9 +33,10 @@ export class AddCommentComponent {
 
 
   addComment(): void {
-    if (this.storageService.getCurrentUser()) {
-      if (this.text) {
 
+    if (this.storageService.getCurrentUser()) {
+      this.validComment = this.text && this.text.length <=255;
+      if (this.validComment) {
         this.httpClient.post("/api/comment/", {
           message: this.text,
           createdAt: this.currentDateTime,

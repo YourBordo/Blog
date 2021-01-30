@@ -1,10 +1,12 @@
 ADD ARTICLE
 <ng-container *ngIf="storageService.getCurrentUser()">
 
+
 <input type="text" [(ngModel)]="article.title" placeholder="title">
 <input type="text" [(ngModel)]="article.articleText" placeholder="text">
 
   <input type="text" [(ngModel)]="tagName" placeholder="add tag">
+  <div *ngIf="!validTagField"> check your tag</div>
   <button (click)="addTag()">addTag</button>
 
   <ng-container *ngIf="article.tags">
@@ -22,5 +24,5 @@ ADD ARTICLE
   <button (click)="setArticleStatusDraft()">DRAFT</button>
 
   <input type="button" (click)="addArticle()" value="save" >
-
+<div *ngIf="!validArticleFields">check title and text length </div>
 </ng-container>

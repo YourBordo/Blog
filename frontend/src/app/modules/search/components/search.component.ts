@@ -16,8 +16,8 @@ export class SearchComponent {
   public text: string;
   public isTag: boolean = true;
   public articles: Article[] = [];
-  public page: number = 0;
-  public itemsPerPageAmount: number = 1;
+  public PAGE: number = 0;
+  public ITEMS_PER_PAGE: number = 10;
 
   constructor(private articleService: ArticleService,
               private tagService: TagService,
@@ -25,35 +25,37 @@ export class SearchComponent {
   }
 
   search(): void {
-    if (this.isTag) {
-      this.tagService.getTagsLike(this.text).subscribe(responseTags => {
-        responseTags.forEach(tag => {
-          this.articleService.getArticlesByTagId(tag.id).subscribe(responseArticles => {
-            if (!this.articles.length) {
-              this.articles = responseArticles;
-            }else {
-              this.articles.concat(responseArticles);
-            }
-          })
-        });
+    if(this.text) {
+      if (this.isTag) {
+        this.tagService.getTagsLike(this.text).subscribe(responseTags => {
+          responseTags.forEach(tag => {
+            this.articleService.getArticlesByTagId(tag.id).subscribe(responseArticles => {
+              if (!this.articles.length) {
+                this.articles = responseArticles;
+              } else {
+                this.articles.concat(responseArticles);
+              }
+            })
+          });
 
-        let idNumber: number = 0;
-        this.articles.forEach(article => {
-          idNumber = article.id;
-          this.articles.forEach(article2 => {
-            if (article2.id == idNumber && article != article2) {
-              this.articles.splice(this.articles.indexOf(article2), 1);
-            }
+          let idNumber: number = 0;
+          this.articles.forEach(article => {
+            idNumber = article.id;
+            this.articles.forEach(article2 => {
+              if (article2.id == idNumber && article != article2) {
+                this.articles.splice(this.articles.indexOf(article2), 1);
+              }
+            })
           })
         })
-      })
-    } else {
-      this.articleService.getArticlesLike(this.text).subscribe(responseArticles => {
-        this.articles = responseArticles;
-      })
-    }
-    if (!this.storageService.getCurrentUser()) {
-      this.removeDraftArticles();
+      } else {
+        this.articleService.getArticlesLike(this.text).subscribe(responseArticles => {
+          this.articles = responseArticles;
+        })
+      }
+      if (!this.storageService.getCurrentUser()) {
+        this.removeDraftArticles();
+      }
     }
   }
 

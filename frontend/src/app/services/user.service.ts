@@ -36,6 +36,9 @@ export class UserService {
   public generateToken(login: Login): Observable<AuthToken> {
     return this.http.post<AuthToken>("/api/token/generate-token", login);
   }
+  public isValidToken(token: string): Observable<boolean> {
+    return this.http.get<boolean>("/api/token/is-valid/" + token);
+  }
 
   public generateEmailToken(user: User): Observable<AuthToken> {
     return this.http.post<AuthToken>("/api/mail/generate-email-token", user);

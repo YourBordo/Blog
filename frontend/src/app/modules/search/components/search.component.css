@@ -1,0 +1,57 @@
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+  font-family: "Times New Roman";
+}
+
+.title {
+  color: #575757;
+  font-size: 30px;
+
+}
+
+.read {
+  font-family: "Times New Roman";
+}
+
+.upated {
+  color: grey;
+  font-size: 15px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #c4cad8;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #5c8db0;
+  box-shadow: 0 4px 8px 0 rgba(196, 202, 216, 0.2);
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+  font-family: "Times New Roman";
+
+}
+
+.all-pagination {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+  font-family: "Times New Roman";
+}
+
