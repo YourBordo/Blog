@@ -76,8 +76,15 @@ export class AddArticleComponent implements OnInit {
         this.article.tags = [];
       }
       this.article.tags.push(tag);
+       this.tagName = null;
     }
+
+
   }
+
+
+
+
 
   deleteTag(tagToDelete: Tag): void {
     if (this.article.tags) {
@@ -90,6 +97,8 @@ export class AddArticleComponent implements OnInit {
     }
   }
 
+
+
   setArticleStatusPublic(): void {
     this.status = ArticleStatus.PUBLIC;
   }
@@ -99,3 +108,4 @@ export class AddArticleComponent implements OnInit {
   }
 
 }
+

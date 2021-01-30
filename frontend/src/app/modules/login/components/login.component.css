@@ -49,7 +49,9 @@ hr {
 .logInButton:hover {
   opacity:1;
 }
-
+.logInButton:active,:focus {
+  outline: none;
+}
 /* Add a blue text color to links */
 a {
   color: dodgerblue;

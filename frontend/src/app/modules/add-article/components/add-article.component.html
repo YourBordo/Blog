@@ -1,28 +1,43 @@
-ADD ARTICLE
-<ng-container *ngIf="storageService.getCurrentUser()">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<div class="card">
+  <section class="horizont">
+  <h1>Add article</h1><img src="https://img.icons8.com/dotty/80/000000/edit-file.png"/>
+  </section>
+<ng-container class="container" *ngIf="storageService.getCurrentUser()">
 
 
-<input type="text" [(ngModel)]="article.title" placeholder="title">
-<input type="text" [(ngModel)]="article.articleText" placeholder="text">
-
-  <input type="text" [(ngModel)]="tagName" placeholder="add tag">
-  <div *ngIf="!validTagField"> check your tag</div>
-  <button (click)="addTag()">addTag</button>
-
+<input type="text" class="title" [(ngModel)]="article.title" placeholder="Title">
+<textarea type="text" class="descr" [(ngModel)]="article.articleText" placeholder="Text"></textarea>
+<section class="Input">
+  <input  id="inputField" type="text" [(ngModel)]="tagName" placeholder="Add tag">
+  <button id="clearAll" class="add" (click)="addTag() "  ></button>
+</section>
+  <div class="error first" *ngIf="!validTagField"> <p>Input tag  name</p> </div>
   <ng-container *ngIf="article.tags">
     <ng-container *ngFor="let tag of article.tags ">
-      <ul>
+      <ul class="hr">
         <li>
           {{tag.tagName}}
-          <button (click)="deleteTag(tag)">delete tag</button>
+          <button class="delete" (click)="deleteTag(tag)"></button>
         </li>
       </ul>
     </ng-container>
   </ng-container>
+<section class="choose">
+  <label>
+  <input type="radio" (click)="setArticleStatusPublic()" [value]="true"  name="chooseField" checked >
+    <span class="design"></span>
+    <span  class="radioText">Public </span>
+  </label>
+  <label>
+    <input type="radio" (click)="setArticleStatusDraft()" name="chooseField" [value]="false"  >
+    <span class="design"></span>
+    <span  class="radioText">Draft </span>
+  </label>
 
-  <button (click)="setArticleStatusPublic()">PUBLIC</button>
-  <button (click)="setArticleStatusDraft()">DRAFT</button>
-
-  <input type="button" (click)="addArticle()" value="save" >
-<div *ngIf="!validArticleFields">check title and text length </div>
+</section>
+  <input class="save"  type="button" (click)="addArticle()" value="Save" >
+  <div class="error second" *ngIf="!validArticleFields"><p>Check title and text length </p></div>
 </ng-container>
+</div>
+
