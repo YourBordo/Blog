@@ -40,7 +40,7 @@ public class ArticleController {
         return articleService.findByTagId(id);
     }
 
-    @RequestMapping(value = "/{page}/{size}/{sort}/{order}", method = RequestMethod.GET)
+    @RequestMapping(value = "/?page={page}&size={size}&sort={sort}&order={order}", method = RequestMethod.GET)
     public PageWrapper<Article> getAllArticles(@PathVariable("page") int page,
                                                @PathVariable("size") int size,
                                                @PathVariable("sort") String sortBy,
@@ -48,7 +48,7 @@ public class ArticleController {
         return articleService.findAll(page, size, sortBy, order);
     }
 
-    @RequestMapping(value = "/{userId}/{page}/{size}/{sort}/{order}", method = RequestMethod.GET)
+    @RequestMapping(value = "/?user={userId}&page={page}&size={size}&sort={sort}&order={order}", method = RequestMethod.GET)
     public PageWrapper<Article> getArticlesByUserId(@PathVariable("userId") long id,
                                                     @PathVariable("page") int page,
                                                     @PathVariable("size") int size,
