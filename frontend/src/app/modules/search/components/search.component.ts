@@ -50,6 +50,7 @@ export class SearchComponent {
           this.articles = responseArticles;
         })
       }
+      this.text = null;
       if (!this.storageService.getCurrentUser()) {
         this.removeDraftArticles();
       }

@@ -9,8 +9,8 @@
            viewBox="0 0 172 172"
            style=" fill:#000000;">
         <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
-           stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
-           font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+           stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none"
+           font-size="none"  style="mix-blend-mode: normal">
           <path d="M0,172v-172h172v172z" fill="none"></path>
           <path
             d="M0,86c0,-47.49649 38.50351,-86 86,-86c47.49649,0 86,38.50351 86,86c0,47.49649 -38.50351,86 -86,86c-47.49649,0 -86,-38.50351 -86,-86zM86,168.56c45.59663,0 82.56,-36.96337 82.56,-82.56c0,-45.59663 -36.96337,-82.56 -82.56,-82.56c-45.59663,0 -82.56,36.96337 -82.56,82.56c0,45.59663 36.96337,82.56 82.56,82.56z"
@@ -219,11 +219,8 @@
         <button  class="delete" *ngIf="comment.user.id == storageService.getCurrentUser().id"
                 (click)="deleteComment(comment)">
         </button>
-
       </div>
-
       <span class="data">{{comment.createdAt | date: 'MMMM dd, yyyy'}}</span>
-
       <span class="text">{{comment.message}} </span>
 
     </section>
