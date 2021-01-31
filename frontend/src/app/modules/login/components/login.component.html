@@ -7,20 +7,19 @@
     <p>Please fill in this form to enter.</p>
     <hr>
     <label for="email"><b>Email</b></label>
-    <input [(ngModel)]="loginModel.username" [ngModelOptions]="{standalone: true}" type="text" placeholder="Enter Email"
+    <input [(ngModel)]="userModel.email" [ngModelOptions]="{standalone: true}" type="text" placeholder="Enter Email"
            name="email" id="email" required>
     <label for="psw"><b>Password</b></label>
-    <input [(ngModel)]="loginModel.password" [ngModelOptions]="{standalone: true}" type="password"
+    <input [(ngModel)]="userModel.password" [ngModelOptions]="{standalone: true}" type="password"
            placeholder="Enter Password" name="psw" id="psw" required>
-
+    <div *ngIf="!validData"> Check your data please</div>
     <p>You always can enter without login!
       <a
         [routerLink]="['/wall']" routerLinkActive="active"
         [routerLinkActiveOptions]="{exact:true}">Let's go
       </a>.
     </p>
-    <button type="submit" (click)="onSubmit()" class="logInButton" [routerLink]="['/wall']" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}">Log in
+    <button type="submit" (click)="onSubmit()" class="logInButton" >Log in
     </button>
   </div>
   <div class="container signUp">

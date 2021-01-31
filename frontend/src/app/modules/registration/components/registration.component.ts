@@ -1,10 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {StorageService} from "../../../services/storage.service";
-import {AuthToken, UserService} from "../../../services/user.service";
-import {Router} from "@angular/router";
+import {UserService} from "../../../services/user.service";
 import {User} from "../../../models/user";
-import {Login} from "../../../models/login";
-import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'registration',
@@ -25,8 +22,12 @@ export class RegistrationComponent {
   }
 
   public onSubmit(): void {
-    if (this.userModel.firstName && this.userModel.lastName && this.userModel.email && this.userModel.password) {
-      this.validData = true;
+    this.validData = this.userModel.firstName && this.userModel.firstName.length <= 15
+      && this.userModel.lastName && this.userModel.lastName.length <=15
+      && this.userModel.email && this.userModel.email.length <=31
+      && this.userModel.password && this.userModel.password.length <=15;
+    if(this.validData)
+    {
       this.userService.getUserByEmail(this.userModel.email).subscribe(responseUser => {
         if (responseUser) {
           this.suchEmailAlreadyExists = true;
@@ -41,7 +42,6 @@ export class RegistrationComponent {
 
     }else {
       this.submit =false;
-      this.validData = false;
     }
   }
 

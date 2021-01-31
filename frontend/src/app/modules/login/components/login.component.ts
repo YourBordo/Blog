@@ -10,31 +10,41 @@ import {Router} from "@angular/router";
   styleUrls: ["./login.component.css"],
   templateUrl: "./login.component.html"
 })
-export class LoginComponent{
+export class LoginComponent {
 
   public loginModel: Login = {};
+  public userModel: User = new User();
+  public validData: boolean = true;
 
-  constructor( public storageService: StorageService,
-               private userService: UserService,
-               private router: Router) {
+  constructor(public storageService: StorageService,
+              private userService: UserService,
+              private router: Router) {
+    this.userModel.email = null;
+    this.userModel.password = null;
   }
 
   public onSubmit(): void {
-    this.userService.generateToken(this.loginModel)
-      .subscribe((authToken: AuthToken) => {
-        if (authToken.token) {
-          this.storageService.setToken(authToken.token);
-          //console.log(this.loginModel);
-          this.userService.getAuthorizedUser()
-            .subscribe((user: User) => {
-              this.storageService.setCurrentUser(user);
-              this.router.navigate(['profile/' + user.id]).then();
-            });
-        }
-      }, (error) => {
+    this.validData = this.userModel.email && this.userModel.email.length <= 31
+      && this.userModel.password && this.userModel.password.length <= 15;
+    if (this.validData) {
+      this.loginModel.username = this.userModel.email;
+      this.loginModel.password = this.userModel.password;
+      this.userService.generateToken(this.loginModel)
+        .subscribe((authToken: AuthToken) => {
+          if (authToken.token) {
+            this.storageService.setToken(authToken.token);
+            this.userService.getAuthorizedUser()
+              .subscribe((user: User) => {
+                this.storageService.setCurrentUser(user);
+                this.router.navigate(['profile/' + user.id]).then();
+              });
+          }
+        }, (error) => {
           alert(error.message);
-      });
-
+        });
+    }else{
+      this.validData = false;
+    }
   }
 
 
