@@ -1,0 +1,8 @@
+INSERT INTO blog.user (id, first_name, last_name, password, email, created_at) VALUES (1, 'Mary', 'Williams', '$2a$10$XEXQKwGa8Z0T5.t8bXtKAODr9a4uhG1zzN.NXZaZLehv9dLP.bDCi', 'aa@', '2021-01-17 14:37:16');
+INSERT INTO blog.user (id, first_name, last_name, password, email, created_at) VALUES (2, 'Mason', 'Baldwin', '$2a$10$XEXQKwGa8Z0T5.t8bXtKAODr9a4uhG1zzN.NXZaZLehv9dLP.bDCi', 'bb@', '2021-01-18 14:54:39');
+INSERT INTO blog.user (id, first_name, last_name, password, email, created_at) VALUES (3, 'Kira', 'Crystal', '$2a$10$XEXQKwGa8Z0T5.t8bXtKAODr9a4uhG1zzN.NXZaZLehv9dLP.bDCi', 'cc@', '2021-01-25 22:03:38');
+INSERT INTO blog.user (id, first_name, last_name, password, email, created_at) VALUES (5, 'Dr', 'Marci', '$2a$10$XEXQKwGa8Z0T5.t8bXtKAODr9a4uhG1zzN.NXZaZLehv9dLP.bDCi', 'dd@', '2021-01-25 22:03:38');
+INSERT INTO blog.user (id, first_name, last_name, password, email, created_at) VALUES (8, 'Caren', 'Gittleman', '$2a$10$UXyr9qYU3FNELaBNP5UqIemIGQ8oIGDhSA4yiTCC1.mx7Zx14wnF6', 'ee@', '2021-01-26 07:37:00');
+INSERT INTO blog.user (id, first_name, last_name, password, email, created_at) VALUES (11, 'David', 'Lance', '$2a$10$BGh3doF15coAlVroyaBLDeHSCfn5nzqXEHYb3wQ151sLnJNJFv7a.', 'ff@
+', '2021-01-18 14:54:39');
+INSERT INTO blog.user (id, first_name, last_name, password, email, created_at) VALUES (12, 'Elise', 'Xavier', '$2a$10$h0Kkoxhtxnp0nsGxdGrVoOTwuycIsNaTkssB2HPiriqELKAPf4vV2', 'gg@', '2021-01-29 09:18:00');

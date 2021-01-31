@@ -1,0 +1,12 @@
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (7, 16, 16);
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (10, 16, 17);
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (15, 29, 27);
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (26, 45, 36);
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (27, 45, 37);
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (28, 46, 38);
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (29, 53, 39);
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (31, 61, 41);
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (32, 16, 41);
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (34, 62, 42);
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (36, 64, 44);
+INSERT INTO blog.article_tag (id, article_id, tag_id) VALUES (38, 9, 41);
