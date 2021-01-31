@@ -5,10 +5,11 @@ import com.leverx.project.entity.User;
 import com.leverx.project.service.TagService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
 import java.util.Map;
-
+@RequestScope
 @RestController
 @RequestMapping("/api/tag")
 public class TagController {

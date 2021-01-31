@@ -6,9 +6,10 @@ import com.leverx.project.pagination.PageWrapper;
 import com.leverx.project.service.ArticleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
-
+@RequestScope
 @RestController
 @RequestMapping("/api/article")
 public class ArticleController {

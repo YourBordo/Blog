@@ -3,10 +3,12 @@ package com.leverx.project.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.leverx.project.entity.enums.ArticleStatus;
+import org.springframework.web.context.annotation.RequestScope;
 
 import javax.persistence.*;
 import java.util.List;
 
+@RequestScope
 @Entity
 @Table(name = "article")
 public class Article {

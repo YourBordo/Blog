@@ -9,9 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.*;
-
+@RequestScope
 @Component
 public class TagServiceImpl implements TagService {
 

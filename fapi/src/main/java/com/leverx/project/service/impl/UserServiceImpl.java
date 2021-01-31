@@ -14,10 +14,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@RequestScope
 @Service("customUserDetailsService")
 public class UserServiceImpl implements UserService, UserDetailsService {
 

@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 //TokenProvider is responsible for validating user and generating JWT token
+@RequestScope
 @Component
 public class TokenProvider implements Serializable {
 
@@ -65,14 +67,18 @@ public class TokenProvider implements Serializable {
                 .compact();
     }
 
-    public String generateEmailToken(User user) {
+    public String generateEmailToken(User user)throws NullPointerException {
         String token = Jwts.builder()
                 .setSubject(user.getEmail())
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityJwtConstants.EMAIL_TOKEN_SECONDS * 1000))
                 .signWith(SignatureAlgorithm.HS256, SecurityJwtConstants.SIGNING_KEY)
                 .compact();
-        emailService.sendSimpleMessage(user.getEmail(), "Blog application: your submit string", token);
-        return token;
+        try {
+            emailService.sendSimpleMessage(user.getEmail(), "Blog application: your submit string", token);
+            return token;
+        }catch (NullPointerException e){
+            throw e;
+        }
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {

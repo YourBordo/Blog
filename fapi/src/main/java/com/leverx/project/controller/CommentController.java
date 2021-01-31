@@ -5,9 +5,10 @@ import com.leverx.project.service.CommentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
-
+@RequestScope
 @RestController
 @RequestMapping("/api/comment")
 public class CommentController {

@@ -12,9 +12,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 
 //AuthenticationController has API exposed to generate JWT token
-@CrossOrigin(origins = "*", maxAge = 3600)
+@RequestScope
 @RestController
 @RequestMapping("/api/token")
 public class AuthenticationController {

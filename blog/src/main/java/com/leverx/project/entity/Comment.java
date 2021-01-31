@@ -1,9 +1,10 @@
 package com.leverx.project.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.web.context.annotation.RequestScope;
 
 import javax.persistence.*;
-
+@RequestScope
 @Entity
 @Table(name = "comment")
 public class Comment {

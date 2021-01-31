@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
 
 import com.leverx.project.entity.User;
 import com.leverx.project.repository.UserRepository;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.Optional;
-
+@RequestScope
 @Component
 public class UserServiceImpl implements UserService {
 

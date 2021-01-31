@@ -4,9 +4,10 @@ import com.leverx.project.entity.Article;
 import com.leverx.project.pagination.PageWrapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
-
+@RequestScope
 @Component
 public interface ArticleService {
     List<Article> find();

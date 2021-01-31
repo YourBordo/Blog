@@ -1,10 +1,11 @@
 package com.leverx.project.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.web.context.annotation.RequestScope;
 
 import javax.persistence.*;
 import java.util.List;
-
+@RequestScope
 @Entity
 @Table(name = "user")
 public class User {

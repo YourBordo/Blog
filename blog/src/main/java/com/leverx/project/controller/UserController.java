@@ -4,7 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.leverx.project.entity.User;
 import com.leverx.project.service.UserService;
+import org.springframework.web.context.annotation.RequestScope;
 
+@RequestScope
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
