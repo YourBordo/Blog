@@ -17,33 +17,28 @@ export class RegistrationComponent {
   public suchEmailAlreadyExists: boolean = false;
 
   constructor(public storageService: StorageService,
-              private userService: UserService
-              ) {
+              private userService: UserService) {
   }
 
   public onSubmit(): void {
     this.validData = this.userModel.firstName && this.userModel.firstName.length <= 15
-      && this.userModel.lastName && this.userModel.lastName.length <=15
-      && this.userModel.email && this.userModel.email.length <=31
-      && this.userModel.password && this.userModel.password.length <=15;
-    if(this.validData)
-    {
+      && this.userModel.lastName && this.userModel.lastName.length <= 15
+      && this.userModel.email && this.userModel.email.length <= 31
+      && this.userModel.password && this.userModel.password.length <= 15;
+    if (this.validData) {
       this.userService.getUserByEmail(this.userModel.email).subscribe(responseUser => {
         if (responseUser) {
           this.suchEmailAlreadyExists = true;
-        }else{
+        } else {
           this.suchEmailAlreadyExists = false;
           this.submit = true;
-          this.userService.generateEmailToken(this.userModel).subscribe(responseToken=>{
-           this.storageService.currentEmailToken = responseToken.token;
+          this.userService.generateEmailToken(this.userModel).subscribe(responseToken => {
+            this.storageService.currentEmailToken = responseToken.token;
           })
         }
       })
-
-    }else {
-      this.submit =false;
+    } else {
+      this.submit = false;
     }
   }
-
-
 }

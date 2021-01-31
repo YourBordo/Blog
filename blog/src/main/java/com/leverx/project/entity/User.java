@@ -5,6 +5,7 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import javax.persistence.*;
 import java.util.List;
+
 @RequestScope
 @Entity
 @Table(name = "user")

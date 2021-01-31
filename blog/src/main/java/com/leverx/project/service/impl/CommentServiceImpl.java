@@ -12,6 +12,7 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
 import java.util.Optional;
+
 @RequestScope
 @Component
 public class CommentServiceImpl implements CommentService {
@@ -49,10 +50,10 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public ResponseEntity delete(long id) {
-        try{
+        try {
             commentRepository.deleteById(id);
             return new ResponseEntity(HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
@@ -60,9 +61,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public ResponseEntity<Comment> add(Comment comment) {
-        try{
+        try {
             return ResponseEntity.ok(commentRepository.save(comment));
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 

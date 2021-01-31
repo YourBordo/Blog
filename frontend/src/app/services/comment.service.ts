@@ -10,16 +10,17 @@ export class CommentService {
 
   constructor(private http: HttpClient) {
   }
+
   public getComment(commentId: number): Observable<Comment> {
     return this.http.get<Comment>(this.url + commentId);
   }
 
   public getCommentsByUserId(userId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(this.url +"user/"+ userId);
+    return this.http.get<Comment[]>(this.url + "user/" + userId);
   }
 
   public getCommentsByArticleId(userId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(this.url +"article/"+ userId);
+    return this.http.get<Comment[]>(this.url + "article/" + userId);
   }
 
   public addComment(comment: Comment): Observable<Comment> {
@@ -29,5 +30,4 @@ export class CommentService {
   public deleteComment(commentId: number): Observable<{}> {
     return this.http.delete(this.url + commentId);
   }
-
 }

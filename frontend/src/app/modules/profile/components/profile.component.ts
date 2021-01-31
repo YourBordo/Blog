@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ArticleService} from "../../../services/article.service";
 import {UserService} from "../../../services/user.service";
 import {ActivatedRoute} from "@angular/router";
@@ -16,8 +16,6 @@ import {StorageService} from "../../../services/storage.service";
 export class ProfileComponent implements OnInit {
 
   public user: User = new User();
-  public PAGE: number = 0;
-  public ITEMS_PER_PAGE: number = 10;
 
   constructor(private articleService: ArticleService,
               private userService: UserService,
@@ -25,6 +23,7 @@ export class ProfileComponent implements OnInit {
               public storageService: StorageService) {
     this.user.id = activatedRoute.snapshot.params['id'];
   }
+
   ngOnInit(): void {
     this.userService.getUser(this.user.id).subscribe(responseUser => {
       this.user = responseUser;

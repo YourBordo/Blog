@@ -1,7 +1,6 @@
 package com.leverx.project.controller;
 
 import com.leverx.project.entity.EmailToken;
-import com.leverx.project.entity.LoginUser;
 import com.leverx.project.entity.User;
 import com.leverx.project.security.TokenProvider;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,7 @@ import org.springframework.web.context.annotation.RequestScope;
 @RestController
 @RequestMapping("/api/mail")
 public class EmailSenderController {
-//todo set password for email at application.properties
+
     private final TokenProvider tokenProvider;
 
     public EmailSenderController(TokenProvider tokenProvider) {
@@ -21,18 +20,17 @@ public class EmailSenderController {
     }
 
     @RequestMapping(value = "/generate-email-token", method = RequestMethod.POST)
-    public ResponseEntity generateEmailToken(@RequestBody User user){
-       try {
-           final String token = tokenProvider.generateEmailToken(user);
-           return ResponseEntity.ok(new EmailToken(token));
-       }catch (Exception e){
-           return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-       }
+    public ResponseEntity generateEmailToken(@RequestBody User user) {
+        try {
+            final String token = tokenProvider.generateEmailToken(user);
+            return ResponseEntity.ok(new EmailToken(token));
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @RequestMapping(value = "/is-valid/{token}", method = RequestMethod.GET)
-    public boolean isValid(@PathVariable("token") String token){
+    public boolean isValid(@PathVariable("token") String token) {
         return tokenProvider.isTokenExpired(token);
     }
-
 }

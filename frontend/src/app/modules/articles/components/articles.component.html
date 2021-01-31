@@ -1,9 +1,7 @@
-<h4>Blog</h4>
 <ng-container *ngFor="let article of articles
     | paginate: { itemsPerPage: ITEMS_PER_PAGE, currentPage: PAGE }">
-
   <div class="card">
-    <img src="https://nbnews.com.ua/wp-content/uploads/2020/06/maxresdefault-7.jpg"/>
+    <img src="https://i.pinimg.com/originals/4d/4b/50/4d4b50701aa71853ffc783add55a332d.jpg"/>
     <p class="title">{{article.title}}</p>
     <div class="updated">
       <div class="img"><img id ='cal' src="https://img.icons8.com/dotty/80/000000/calendar.png"/>
@@ -22,7 +20,6 @@
 <div class="all-pagination">
   <pagination-controls class="my-pagination" (pageChange)="PAGE = $event"></pagination-controls>
 </div>
-<!--  <input class="pagination-number" type="number" [(ngModel)]="ITEMS_PER_PAGE" placeholder="set items per page">-->
 <select  class="pagination-number" name="num" id="num" [(ngModel)]="ITEMS_PER_PAGE">
   <option value="1">1</option>
   <option value="5">5</option>

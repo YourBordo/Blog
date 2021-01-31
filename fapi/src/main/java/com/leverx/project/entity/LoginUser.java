@@ -1,6 +1,5 @@
 package com.leverx.project.entity;
 
-//Model for user login process
 public class LoginUser {
 
     private String username;

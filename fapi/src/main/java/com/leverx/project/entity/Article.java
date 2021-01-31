@@ -1,6 +1,7 @@
 package com.leverx.project.entity;
 
 import com.leverx.project.entity.enums.ArticleStatus;
+
 import java.util.List;
 
 public class Article {

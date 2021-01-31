@@ -1,8 +1,6 @@
 package com.leverx.project.service.impl;
 
 import com.leverx.project.entity.Comment;
-import com.leverx.project.entity.Tag;
-import com.leverx.project.entity.User;
 import com.leverx.project.service.CommentService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -15,6 +13,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
 @RequestScope
 @Component
 public class CommentServiceImpl implements CommentService {

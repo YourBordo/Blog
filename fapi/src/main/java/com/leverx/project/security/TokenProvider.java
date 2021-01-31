@@ -67,7 +67,7 @@ public class TokenProvider implements Serializable {
                 .compact();
     }
 
-    public String generateEmailToken(User user)throws NullPointerException {
+    public String generateEmailToken(User user) throws NullPointerException {
         String token = Jwts.builder()
                 .setSubject(user.getEmail())
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityJwtConstants.EMAIL_TOKEN_SECONDS * 1000))
@@ -76,7 +76,7 @@ public class TokenProvider implements Serializable {
         try {
             emailService.sendSimpleMessage(user.getEmail(), "Blog application: your submit string", token);
             return token;
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             throw e;
         }
     }

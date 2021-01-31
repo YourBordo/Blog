@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {ArticleService} from "../../../services/article.service";
 import {Article} from "../../../models/article";
 import {ArticleStatus} from "../../../models/enums/article-status";
-import {Page} from "../../../models/page";
 import {Order} from "../../../models/enums/order";
 import {Sort} from "../../../models/enums/sort";
 import {StorageService} from "../../../services/storage.service";
@@ -15,8 +14,6 @@ import {StorageService} from "../../../services/storage.service";
 
 export class WallComponent implements OnInit {
   public articles: Article[];
-  public PAGE: number = 0;
-  public ITEMS_PER_PAGE: number = 10;
   public order: Order = Order.ASC;
   public sort: Sort = Sort.TITLE;
 
@@ -55,6 +52,4 @@ export class WallComponent implements OnInit {
     });
     return flag;
   }
-
-
 }

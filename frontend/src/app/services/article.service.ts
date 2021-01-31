@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import {Article} from "../models/article";
 import {Page} from "../models/page";
 import {Injectable} from "@angular/core";
-import {Tag} from "../models/tag";
 
 @Injectable()
 export class ArticleService {
@@ -62,5 +61,4 @@ export class ArticleService {
   public getArticlesLike(title: string): Observable<Article[]> {
     return this.http.get<Article[]>(this.url + "title=" + title);
   }
-
 }

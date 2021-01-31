@@ -1,7 +1,6 @@
 package com.leverx.project.service.impl;
 
 import com.leverx.project.entity.Tag;
-import com.leverx.project.entity.User;
 import com.leverx.project.service.TagService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,11 @@ import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.annotation.RequestScope;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 @RequestScope
 @Component
 public class TagServiceImpl implements TagService {
@@ -46,6 +49,5 @@ public class TagServiceImpl implements TagService {
         RestTemplate restTemplate = new RestTemplate();
         Tag[] tags = restTemplate.getForObject(backendUrl + "/api/tag/tagName=" + tagName, Tag[].class);
         return tags == null ? Collections.emptyList() : Arrays.asList(tags);
-
     }
 }

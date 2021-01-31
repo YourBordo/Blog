@@ -12,7 +12,6 @@ import {StorageService} from "../../../services/storage.service";
 
 export class CommentsComponent implements OnInit {
 
-
   @Input() articleId: number;
   comments: Comment[];
   constructor(private userService: UserService,
@@ -53,7 +52,5 @@ export class CommentsComponent implements OnInit {
 
   onUpdate(update:any){
     this.getComments();
-
   }
-
 }

@@ -19,9 +19,7 @@ export class ConfirmComponent {
   public loginModel: Login = {};
   public code: string;
   public codeIsValid: boolean = true;
-
   myDate = new Date();
-
 
   constructor(public storageService: StorageService,
               private userService: UserService,
@@ -49,8 +47,6 @@ export class ConfirmComponent {
         this.codeIsValid = false;
       }
     });
-
-
   }
 
   authorize(): void {
@@ -67,6 +63,5 @@ export class ConfirmComponent {
       }, (error) => {
         alert(error.message);
       });
-
   }
 }

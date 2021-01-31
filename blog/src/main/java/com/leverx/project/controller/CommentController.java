@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
+
 @RequestScope
 @RestController
 @RequestMapping("/api/comment")

@@ -1,10 +1,9 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from "@angular/core";
 import {Article} from "../../../models/article";
 import {ArticleService} from "../../../services/article.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Comment} from "../../../models/comment";
 import {UserService} from "../../../services/user.service";
-import {ArticleStatus} from "../../../models/enums/article-status";
 import {StorageService} from "../../../services/storage.service";
 
 @Component({
@@ -15,11 +14,9 @@ import {StorageService} from "../../../services/storage.service";
 
 export class ArticleComponent implements OnInit {
 
-
   public article: Article;
   public comments: Comment[];
   public currentArticleId: number;
-
 
   constructor(private articleService: ArticleService,
               private userService: UserService,
@@ -29,7 +26,6 @@ export class ArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.articleService.getArticle(this.currentArticleId).subscribe(article1 => {
       this.article = article1;
       this.comments = article1.comments;
@@ -40,6 +36,4 @@ export class ArticleComponent implements OnInit {
       })
     });
   }
-
-
 }

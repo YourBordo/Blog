@@ -1,7 +1,6 @@
 package com.leverx.project.service.impl;
 
 import com.leverx.project.entity.Article;
-import com.leverx.project.entity.Comment;
 import com.leverx.project.pagination.PageWrapper;
 import com.leverx.project.service.ArticleService;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
 @RequestScope
 @Component
 public class ArticleServiceImpl implements ArticleService {
@@ -50,7 +50,7 @@ public class ArticleServiceImpl implements ArticleService {
             restTemplate.put(backendUrl + "/api/article/", article, Article.class);
             return new ResponseEntity<>(Objects.requireNonNull(restTemplate.getForObject
                     (backendUrl + "/api/article/" + article.getId(), Article.class)),
-            HttpStatus.OK);
+                    HttpStatus.OK);
         } catch (HttpStatusCodeException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -97,7 +97,6 @@ public class ArticleServiceImpl implements ArticleService {
         String path = backendUrl + "/api/article/" + pageNumber + '/' + pageSize
                 + '/' + sortBy + '/' + order;
         return restTemplate.getForObject(path, PageWrapper.class);
-
     }
 
     @Override
@@ -107,5 +106,4 @@ public class ArticleServiceImpl implements ArticleService {
                 + '/' + sortBy + '/' + order;
         return restTemplate.getForObject(path, PageWrapper.class);
     }
-
 }

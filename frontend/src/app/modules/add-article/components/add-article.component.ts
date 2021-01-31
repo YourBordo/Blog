@@ -43,17 +43,14 @@ export class AddArticleComponent implements OnInit {
       && this.article.articleText && this.article.articleText.length <= 5000;
 
     if (this.storageService.getCurrentUser() && this.validArticleFields) {
-
       this.article.user = new User();
       this.article.user.id = this.storageService.getCurrentUser().id;
       this.article.createdAt = this.currentDateTime;
       this.article.updatedAt = this.currentDateTime;
-
       let currentArticle: Article = new Article(undefined, this.article.title,
         this.article.articleText, this.article.createdAt, this.article.updatedAt,
         this.status, this.article.tags,
         undefined, this.article.user);
-
       this.articleService.saveArticle(currentArticle).subscribe(responseArticle => {
         this.router.navigate(['article/' + responseArticle.id]).then();
       })
@@ -78,13 +75,7 @@ export class AddArticleComponent implements OnInit {
       this.article.tags.push(tag);
        this.tagName = null;
     }
-
-
   }
-
-
-
-
 
   deleteTag(tagToDelete: Tag): void {
     if (this.article.tags) {
@@ -97,8 +88,6 @@ export class AddArticleComponent implements OnInit {
     }
   }
 
-
-
   setArticleStatusPublic(): void {
     this.status = ArticleStatus.PUBLIC;
   }
@@ -106,6 +95,5 @@ export class AddArticleComponent implements OnInit {
   setArticleStatusDraft(): void {
     this.status = ArticleStatus.DRAFT;
   }
-
 }
 

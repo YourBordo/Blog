@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {Article} from "../../../models/article";
 
 @Component({
@@ -10,6 +10,4 @@ import {Article} from "../../../models/article";
 export class TagsComponent {
 
   @Input() article: Article;
-
-
 }

@@ -2,7 +2,6 @@ package com.leverx.project.service.impl;
 
 import com.leverx.project.entity.User;
 import com.leverx.project.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +17,7 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.HashSet;
 import java.util.Set;
+
 @RequestScope
 @Service("customUserDetailsService")
 public class UserServiceImpl implements UserService, UserDetailsService {

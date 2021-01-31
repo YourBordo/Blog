@@ -1,7 +1,6 @@
 package com.leverx.project.service.impl;
 
 import com.leverx.project.entity.Article;
-import com.leverx.project.entity.enums.ArticleStatus;
 import com.leverx.project.pagination.PageWrapper;
 import com.leverx.project.repository.ArticleRepository;
 import com.leverx.project.repository.TagRepository;
@@ -17,6 +16,7 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
 import java.util.Optional;
+
 @RequestScope
 @Component
 public class ArticleServiceImpl implements ArticleService {
@@ -24,6 +24,7 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository articleRepository;
     private final TagRepository tagRepository;
     private final UserRepository userRepository;
+
     public ArticleServiceImpl(ArticleRepository articleRepository, TagRepository tagRepository, UserRepository userRepository) {
         this.articleRepository = articleRepository;
         this.tagRepository = tagRepository;
@@ -53,9 +54,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ResponseEntity<Article> update(Article article) {
-        try{
+        try {
             return ResponseEntity.ok(articleRepository.save(article));
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
@@ -70,9 +71,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ResponseEntity<Article> add(Article article) {
-        try{
+        try {
             return ResponseEntity.ok(articleRepository.save(article));
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
@@ -87,13 +88,12 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ResponseEntity delete(long id) {
-        try{
+        try {
             articleRepository.deleteById(id);
             return new ResponseEntity(HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @Override

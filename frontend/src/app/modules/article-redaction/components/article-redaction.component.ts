@@ -37,17 +37,16 @@ export class ArticleRedactionComponent {
     this.currentDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd hh:mm');
   }
 
-
   deleteArticle(): void {
     if (this.storageService.getCurrentUser().id == this.article.user.id) {
-      this.articleService.deleteArticle(this.currentArticleId).subscribe();
-    }
-
-    this.articleService.getArticle(this.currentArticleId).subscribe(article1 => {
-      this.article = article1;
-      this.router.navigate(['profile/' + this.storageService.getCurrentUser().id]).then(r => {
+      this.articleService.deleteArticle(this.currentArticleId).subscribe( res=>{
+        this.articleService.getArticle(this.currentArticleId).subscribe(article1 => {
+          this.article = article1;
+          this.router.navigate(['profile/' + this.storageService.getCurrentUser().id]).then(r => {
+          });
+        });
       });
-    });
+    }
   }
 
   updateArticle(): void {
@@ -58,10 +57,8 @@ export class ArticleRedactionComponent {
       this.articleService.updateArticle(this.article).subscribe(responseArticle => {
         this.article = responseArticle;
       });
-    }
-
-    this.showRedact = !this.showRedact;
-
+        this.showRedact = !this.showRedact;
+      }
   }
 
   addTag(): void {
@@ -102,5 +99,4 @@ export class ArticleRedactionComponent {
   setArticleStatusDraft(): void {
     this.article.articleStatus = ArticleStatus.DRAFT;
   }
-
 }

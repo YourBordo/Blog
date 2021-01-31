@@ -22,7 +22,6 @@ export class AddCommentComponent {
   myDate = new Date();
   public validComment: boolean = true;
 
-
   constructor(private userService: UserService,
               private commentService: CommentService,
               private httpClient: HttpClient,
@@ -33,7 +32,6 @@ export class AddCommentComponent {
 
 
   addComment(): void {
-
     if (this.storageService.getCurrentUser()) {
       this.validComment = this.text && this.text.length <=255;
       if (this.validComment) {
@@ -48,7 +46,6 @@ export class AddCommentComponent {
             {
               id: this.articleId
             }
-
         }).subscribe(
           res => {
             this.onUpdate.emit();
@@ -56,7 +53,6 @@ export class AddCommentComponent {
           err => {
             console.log('Error at addComment()');
           });
-
         this.text = null;
       }
     }

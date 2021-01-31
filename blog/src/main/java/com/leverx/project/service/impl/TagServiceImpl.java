@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 @RequestScope
 @Component
 public class TagServiceImpl implements TagService {
@@ -31,7 +32,7 @@ public class TagServiceImpl implements TagService {
     @Override
     public Map<String, Integer> getTagCloud() {
         Optional<List<Tag>> optionalTags = Optional.ofNullable(tagRepository.findAll());
-        if(optionalTags.isPresent()) {
+        if (optionalTags.isPresent()) {
             int count;
             HashMap<String, Integer> cloud = new HashMap<>();
             for (Tag tag : optionalTags.get()) {
@@ -45,12 +46,11 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public ResponseEntity<Tag> add(Tag tag) {
-        try{
+        try {
             return ResponseEntity.ok(tagRepository.save(tag));
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @Override

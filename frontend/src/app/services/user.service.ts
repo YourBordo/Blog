@@ -12,15 +12,19 @@ export class UserService {
 
   constructor(private http: HttpClient) {
   }
+
   public getUser(userId: number): Observable<User> {
     return this.http.get<User>(this.url + userId);
   }
+
   public getUserByArticleId(id: number): Observable<User> {
     return this.http.get<User>(this.url +"article/" + id);
   }
+
   public getUserByCommentId(id: number): Observable<User> {
     return this.http.get<User>(this.url + "comment/" + id);
   }
+
   public getUserByEmail(email: string): Observable<User> {
     return this.http.get<User>(this.url + "email/" + email);
   }
@@ -43,7 +47,6 @@ export class UserService {
   public generateEmailToken(user: User): Observable<AuthToken> {
     return this.http.post<AuthToken>("/api/mail/generate-email-token", user);
   }
-
 
   public getAuthorizedUser(): Observable<User> {
     return this.http.get<User>("/api/user/current");

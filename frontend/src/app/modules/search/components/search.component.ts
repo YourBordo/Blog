@@ -16,8 +16,6 @@ export class SearchComponent {
   public text: string;
   public isTag: boolean = true;
   public articles: Article[] = [];
-  public PAGE: number = 0;
-  public ITEMS_PER_PAGE: number = 10;
 
   constructor(private articleService: ArticleService,
               private tagService: TagService,
@@ -25,7 +23,7 @@ export class SearchComponent {
   }
 
   search(): void {
-    if(this.text) {
+    if (this.text) {
       if (this.isTag) {
         this.tagService.getTagsLike(this.text).subscribe(responseTags => {
           responseTags.forEach(tag => {
@@ -37,7 +35,6 @@ export class SearchComponent {
               }
             })
           });
-
           let idNumber: number = 0;
           this.articles.forEach(article => {
             idNumber = article.id;
@@ -79,5 +76,4 @@ export class SearchComponent {
     });
     return flag;
   }
-
 }

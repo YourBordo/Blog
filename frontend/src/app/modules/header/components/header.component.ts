@@ -8,14 +8,13 @@ import {StorageService} from "../../../services/storage.service";
 
 })
 
-export class HeaderComponent   {
+export class HeaderComponent {
+
   constructor(public storageService: StorageService) {
   }
-
 
   public logout(): void {
     this.storageService.clearToken();
     this.storageService.setCurrentUser(null);
   }
-
 }

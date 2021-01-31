@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
+
 @RequestScope
 @RestController
 @RequestMapping("/api/comment")
@@ -43,6 +44,6 @@ public class CommentController {
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteCommentById(@PathVariable(name = "id") long id) {
-       return commentService.delete(id);
+        return commentService.delete(id);
     }
 }

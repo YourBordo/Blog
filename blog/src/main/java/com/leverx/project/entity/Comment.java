@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.web.context.annotation.RequestScope;
 
 import javax.persistence.*;
+
 @RequestScope
 @Entity
 @Table(name = "comment")
@@ -19,12 +20,12 @@ public class Comment {
     @Column(name = "created_at")
     private String createdAt;
 
-    @JsonBackReference(value="comment-article")
+    @JsonBackReference(value = "comment-article")
     @ManyToOne()
     @JoinColumn(name = "article_id")
     private Article article;
 
-    @JsonBackReference(value="comment-user")
+    @JsonBackReference(value = "comment-user")
     @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;

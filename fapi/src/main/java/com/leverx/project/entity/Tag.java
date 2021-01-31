@@ -1,7 +1,5 @@
 package com.leverx.project.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.List;
 
 public class Tag {

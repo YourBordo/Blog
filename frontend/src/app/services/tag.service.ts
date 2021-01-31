@@ -1,7 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Tag} from "../models/tag";
-import {Article} from "../models/article";
 import {Injectable} from "@angular/core";
 
 @Injectable()

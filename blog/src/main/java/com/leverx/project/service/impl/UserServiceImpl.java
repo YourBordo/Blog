@@ -1,19 +1,17 @@
 package com.leverx.project.service.impl;
 
-import com.leverx.project.entity.Article;
+import com.leverx.project.entity.User;
 import com.leverx.project.repository.ArticleRepository;
 import com.leverx.project.repository.CommentRepository;
+import com.leverx.project.repository.UserRepository;
 import com.leverx.project.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-
-import com.leverx.project.entity.User;
-import com.leverx.project.repository.UserRepository;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.Optional;
+
 @RequestScope
 @Component
 public class UserServiceImpl implements UserService {
@@ -38,19 +36,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<User> delete(long id) {
-        try{
+        try {
             userRepository.deleteById(id);
             return new ResponseEntity<>(new User(), HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(new User(), HttpStatus.BAD_REQUEST);
         }
     }
 
     @Override
     public ResponseEntity<User> add(User user) {
-        try{
+        try {
             return ResponseEntity.ok(userRepository.save(user));
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -71,6 +69,5 @@ public class UserServiceImpl implements UserService {
     public User findByCommentId(long id) {
         Optional<User> optionalUser = Optional.ofNullable(commentRepository.findById(id).getUser());
         return optionalUser.orElse(null);
-
     }
 }

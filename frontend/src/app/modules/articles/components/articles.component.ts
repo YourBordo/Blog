@@ -20,5 +20,4 @@ export class ArticlesComponent implements OnInit {
       article.articleText = article.articleText.substring(0, 50) + "...";
     })
   }
-
 }

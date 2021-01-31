@@ -8,13 +8,12 @@ li {
   color: #324b4e;
   background-color: rgba(80, 131, 241, 0.35);
   text-align: center;
-  cursor: pointer;
   font-size: 15px;
   border-radius: 15px;
 }
 ul {
-  margin-left: 0; /* Отступ слева в браузере IE и Opera */
-  padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+  margin-left: 0;
+  padding-left: 0;
   display:inline-block;
 
 }

@@ -1,9 +1,9 @@
 package com.leverx.project.controller;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import com.leverx.project.entity.User;
 import com.leverx.project.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
 @RequestScope

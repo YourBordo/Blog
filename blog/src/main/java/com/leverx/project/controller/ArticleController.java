@@ -1,7 +1,6 @@
 package com.leverx.project.controller;
 
 import com.leverx.project.entity.Article;
-import com.leverx.project.entity.Tag;
 import com.leverx.project.pagination.PageWrapper;
 import com.leverx.project.service.ArticleService;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
+
 @RequestScope
 @RestController
 @RequestMapping("/api/article")
@@ -77,5 +77,4 @@ public class ArticleController {
     public ResponseEntity deleteArticle(@PathVariable(name = "id") long id) {
         return articleService.delete(id);
     }
-
 }

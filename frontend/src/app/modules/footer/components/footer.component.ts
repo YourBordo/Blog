@@ -8,7 +8,4 @@ import {StorageService} from "../../../services/storage.service";
 })
 
 export class FooterComponent   {
-
-
-
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
 import {User} from "../../../models/user";
 import {Login} from "../../../models/login";
 import {AuthToken, UserService} from "../../../services/user.service";
@@ -42,10 +42,8 @@ export class LoginComponent {
         }, (error) => {
           alert(error.message);
         });
-    }else{
+    } else {
       this.validData = false;
     }
   }
-
-
 }

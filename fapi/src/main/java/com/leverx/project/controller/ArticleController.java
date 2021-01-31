@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
+
 @RequestScope
 @RestController
 @RequestMapping("/api/article")
@@ -78,7 +79,7 @@ public class ArticleController {
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteArticle(@PathVariable(name = "id") long id) {
-      return   articleService.delete(id);
+        return articleService.delete(id);
     }
 
 }

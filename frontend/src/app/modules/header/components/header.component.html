@@ -1,6 +1,5 @@
 <div class="u-clearfix u-header u-header header" id="sec-5f62">
   <a class="logo_img u-image u-logo u-image-1">
-<!--    <img class="u-logo-image u-logo-image-1" src="src/images/logo.jpeg"/>-->
   </a>
   <ng-container *ngIf="storageService.getCurrentUser()">
     <a class="nav-login" [routerLink]="['/profile/' + storageService.getCurrentUser().id]" routerLinkActive="active"
@@ -9,7 +8,7 @@
       {{storageService.getCurrentUser().lastName}}
     </a>
     <a class="nav-login" [routerLink]="['/wall']" routerLinkActive="active"
-       [routerLinkActiveOptions]="{exact:true}">Blog</a>
+       [routerLinkActiveOptions]="{exact:true}">Blog | KittyClysm</a>
     <a class="nav-login  hov" [routerLink]="['/search']" routerLinkActive="active"
        [routerLinkActiveOptions]="{exact:true}"><img src="https://img.icons8.com/dotty/80/000000/search.png"/><span class="log">Search</span></a>
 
@@ -18,7 +17,7 @@
   </ng-container>
   <ng-container *ngIf="!storageService.getCurrentUser()">
     <a class="nav-login" [routerLink]="['/wall']" routerLinkActive="active"
-       [routerLinkActiveOptions]="{exact:true}">Blog</a>
+       [routerLinkActiveOptions]="{exact:true}">Blog | KittyClysm</a>
     <a class="nav-login" [routerLink]="['/search']" routerLinkActive="active"
        [routerLinkActiveOptions]="{exact:true}">Search</a>
     <a class="nav-login" [routerLink]="['/login']" routerLinkActive="active"
