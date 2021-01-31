@@ -1,31 +1,32 @@
-ARTICLE
+<div class="card">
+  <ng-container *ngIf=" article">
+  <section class="horizont">
+    <h1></h1> <img src="https://img.icons8.com/dotty/80/000000/f--k-this-thing.png"/>
+  </section>
+
+    <section class="article">
+      <div>
+        <span class="status">status: {{article.articleStatus}}</span>
+      </div>
+      <span class="title">{{article.title}}</span>
+      <span class="author">by: {{article.user.firstName}} {{article.user.lastName}}</span>
+      <span class="updated">{{article.createdAt | date: 'MMMM dd, yyyy'}} |
+        updated: {{article.updatedAt | date: 'MMMM dd, yyyy'}}</span>
+
+      <textarea disabled type="text" class="descr" cols="150">{{article.articleText}}</textarea>
+    </section>
+    <tags
+      [article]="article">
+    </tags>
+    <article-redaction
+      [article]="article">
+    </article-redaction>
+    <comments
+      [articleId]="article.id">
+    </comments>
+  </ng-container>
+</div>
 
 <ng-container *ngIf="! article">
   <not-found></not-found>
-</ng-container>
-
-<ng-container *ngIf=" article">
-
-  author: {{article.user.firstName}} {{article.user.lastName}}
-  title: {{article.title}}
-  text: {{article.articleText}}
-  status: {{article.articleStatus}}
-  created: {{article.createdAt | date: 'dd/MM/yyyy, H:mm'}}
-  updated: {{article.updatedAt | date: 'dd/MM/yyyy, H:mm'}}
-
-  <hr/>
-  <tags
-    [article]="article">
-  </tags>
-
-  <hr/>
-  <article-redaction
-    [article]="article">
-  </article-redaction>
-
-  <hr/>
-  <comments
-    [articleId]="article.id">
-  </comments>
-
 </ng-container>

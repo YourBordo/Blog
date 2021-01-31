@@ -45,8 +45,9 @@ export class CommentsComponent implements OnInit {
 
   deleteComment(commentToDelete: Comment): void {
     if (this.storageService.getCurrentUser().id == commentToDelete.user.id) {
-      this.commentService.deleteComment(commentToDelete.id).subscribe();
-      this.getComments();
+      this.commentService.deleteComment(commentToDelete.id).subscribe( res=>{
+        this.getComments();
+      });
     }
   }
 

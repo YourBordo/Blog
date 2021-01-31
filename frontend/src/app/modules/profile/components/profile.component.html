@@ -10,7 +10,7 @@
       </div>
       <ng-container *ngIf="user.id == storageService.getCurrentUser().id">
         <section class="information">
-        <div class="data"><img src="https://img.icons8.com/dotty/80/000000/calendar.png"/><span> {{user.createdAt| date: 'dd/MM/yyyy, H:mm'}}</span></div>
+        <div class="data"><img src="https://img.icons8.com/dotty/80/000000/calendar.png"/><span> {{user.createdAt| date: 'MMMM dd, yyyy'}}</span></div>
         <div class="email"><img src="https://img.icons8.com/dotty/80/000000/email-sign.png"/><span>{{user.email}} </span></div>
         </section>
         <button [routerLink]="['/create/article']" routerLinkActive="active"

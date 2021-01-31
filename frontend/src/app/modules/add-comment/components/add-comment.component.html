@@ -1,6 +1,14 @@
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <ng-container *ngIf="storageService.getCurrentUser()">
-  <h5>Enter your comment here</h5>
-  <div *ngIf="!validComment">check your comment</div>
-    <input type="text" [(ngModel)]="text" placeholder="your comment">
-  <input type="button" (click)="addComment()" value="upload" >
+  <div class="card">
+
+  <h3>Leave your comment
+  </h3>
+     <div class="addComment">
+    <textarea type="text" [(ngModel)]="text" placeholder="your comment"></textarea>
+    <button class="add"  (click)="addComment()" ></button>
+     </div>
+    <div class='error' *ngIf="!validComment"><p>check your comment</p></div>
+  </div>
+
 </ng-container>

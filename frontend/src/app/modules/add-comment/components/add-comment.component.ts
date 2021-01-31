@@ -57,6 +57,7 @@ export class AddCommentComponent {
             console.log('Error at addComment()');
           });
 
+        this.text = null;
       }
     }
   }
