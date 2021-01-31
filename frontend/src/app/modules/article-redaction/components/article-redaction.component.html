@@ -1,33 +1,55 @@
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
 <ng-container *ngIf="article.user.id == storageService.getCurrentUser().id">
-  ARTICLE REDACT
+
+  <div class="card vert">
 
   <ng-container *ngIf="!showRedact">
-    <button (click)="onClick()">update article</button>
-    <button (click)="deleteArticle()">delete article</button>
+    <section class="hor">
+    <button class='buttonStart' (click)="onClick()">Update article</button>
+    <button class="buttonStart deleteArticle" (click)="deleteArticle()">Delete article</button>
+    </section>
+<!--    (click)="deleteArticle()"-->
   </ng-container>
   <ng-container *ngIf="showRedact">
+    <h3>Update article</h3>
+    <label>
+      <input type="radio" (click)="setArticleStatusPublic()" [value]="true"  name="chooseField" checked >
+      <span class="design"></span>
+      <span  class="radioText">Public </span>
+    </label>
+    <label>
+      <input type="radio" (click)="setArticleStatusDraft()" name="chooseField" [value]="false"  >
+      <span class="design"></span>
+      <span  class="radioText draft">Draft </span>
+    </label>
 
-    <button (click)="setArticleStatusPublic()">PUBLIC</button>
-    <button (click)="setArticleStatusDraft()">DRAFT</button>
+   <div class="form vert">
 
-    title <input type="text" [(ngModel)]="article.title" placeholder="title">
-    text <input type="text" [(ngModel)]="article.articleText" placeholder="text">
+
+    <input class="title" type="text" [(ngModel)]="article.title" placeholder="Title">
+     <textarea   id = "textarea"  class="descr" [(ngModel)]="article.articleText" placeholder="Text"></textarea>
 
     <ng-container *ngIf="article.tags">
-      <ng-container *ngFor="let tag of article.tags ">
+      <ng-container class="hor" *ngFor="let tag of article.tags ">
         <ul>
           <li>
             {{tag.tagName}}
-            <button (click)="deleteTag(tag)">delete tag</button>
+            <button class="deleteTag"(click)="deleteTag(tag)"></button>
           </li>
         </ul>
       </ng-container>
     </ng-container>
-
-    <input type="text" [(ngModel)]="tagName" placeholder="add tag">
-    <div *ngIf="!validTagField"> check your tag</div>
-    <button (click)="addTag()">addTag</button>
-    <div *ngIf="!validArticleFields">check title and text length</div>
-    <button (click)="updateArticle()">save changes</button>
+    <section class="Input">
+    <input type="text" [(ngModel)]="tagName" placeholder="Add tag">
+    <div class="error" *ngIf="!validTagField"> <p>Check your tag</p></div>
+    <button class="add" (click)="addTag()"></button>
+      </section >
+     <div class="error dir" *ngIf="!validArticleFields"><p>Check title and text length</p></div>
+    <button class="buttonStart save" (click)="updateArticle()">Save changes</button>
+   </div>
   </ng-container>
+  </div>
 </ng-container>
+
+

@@ -1,0 +1,267 @@
+.card {
+  width: 600px;
+  text-align: center;
+  font-family: "Times New Roman";
+  border-radius: 15px;
+  margin-left: 25%;
+}
+.vert{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.add{
+  width: 42px;
+  height: 42px;
+  background: none;
+  border: none;
+
+}
+.add:before{
+  content: "\f067";
+  font-family: FontAwesome;
+  color: #324b4e;
+  cursor:pointer;
+  border-radius: 50%;
+}
+h3{
+  font-family: Montserrat,sans-serif;
+  text-transform: uppercase;
+  margin-left : 0 ;
+  font-size: 20px;
+
+}
+li {
+  list-style-type: none; /* Убираем маркеры */
+  display:inline-block;
+  margin-right: 10px;
+  border: none;
+  outline: 0;
+  padding: 6px;
+  color: #324b4e;
+  background-color: rgba(80, 131, 241, 0.35);
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 15px;
+}
+ul {
+  margin-left: 0; /* Отступ слева в браузере IE и Opera */
+  padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+  display:inline-block;
+
+}
+.hor{
+  margin-left:33%;
+  display:flex;
+  flex-direction: row;
+}
+.buttonStart{
+  border:none;
+  background: none;
+  height: 40px;
+  width: 110px;
+  font-weight: 600;
+  cursor:pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  font-family: Montserrat,sans-serif;
+  border-radius: 15px;
+}
+.buttonStart:hover{
+  background-color: #dddddd;
+}
+.buttonStart:active, focus{
+  outline: none;
+}
+.deleteArticle{
+
+  margin-left: 10px;
+}
+label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  margin: 12px 0;
+
+  cursor: pointer;
+  position: relative;
+}
+
+/* .design */
+.design {
+  width: 16px;
+  height: 16px;
+
+  border: 1px solid var(--other);
+  border-radius: 100%;
+  margin-right: 16px;
+
+  position: relative;
+}
+
+.design::before,
+.design::after {
+  content: "";
+  display: block;
+
+  width: inherit;
+  height: inherit;
+
+  border-radius: inherit;
+
+  position: absolute;
+  transform: scale(0);
+  transform-origin: center center;
+}
+
+.design:before {
+  background: var(--other);
+  opacity: 0;
+  transition: .3s;
+}
+
+.design::after {
+  background: var(--primary);
+  opacity: .4;
+  transition: .6s;
+}
+
+
+/* .text */
+.radioText {
+  color: var(--other);
+  font-weight: bold;
+}
+
+
+/* checked state */
+.radio:checked+.design::before {
+  opacity: 1;
+  transform: scale(.6);
+}
+
+
+/* other states */
+.radio:hover+.design,
+.radio:focus+.design {
+  border: 1px solid var(--primary);
+}
+
+.radio:hover+.design:before,
+.radio:focus+.design:before {
+  background: var(--primary);
+}
+
+.radio:hover~.text {
+  color: var(--primary);
+}
+
+.radio:focus+.design::after,
+.radio:active+.design::after {
+  opacity: .1;
+  transform: scale(2.6);
+}
+.draft{
+  margin-right: 8px;
+}
+
+input[type=text]{
+  width: 80%;
+  padding: 15px;
+  /*margin: 5px 0 22px 0;*/
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 15px;
+}
+input[type=text]:focus, input[type=password]:focus {
+  outline: none;
+}
+.title:active,focus{
+  background-color: #ddd;
+}
+.form{
+  margin-left: 15%;
+
+}
+.title{
+  margin-bottom: 20px;
+}
+.descr{
+  margin-bottom: 20px;
+  width: 80%;
+  padding: 15px;
+  /*margin: 5px 0 22px 0;*/
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 15px;
+  resize: none;
+}
+textarea:active,:focus{
+  outline: none;
+  background-color: #ddd;
+}
+.Input{
+  width: 85%;
+  /*padding: 15px;*/
+  /*margin: 5px 0 ;*/
+
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 15px;
+}
+.Input:active,:focus{
+  background-color: #ddd;}
+.Input > input:active,:focus {
+  background-color: #ddd;
+}
+.save{
+  margin-top:30px;
+  margin-left: 35%;
+}
+.deleteTag{
+
+  width: 24px;
+
+  background: none;
+  border: none;
+  position: relative;
+  /*border-radius:42px;*/
+}
+.deleteTag:before{
+  content: "\f00d";
+  font-family: FontAwesome;
+  color: #324b4e;
+  cursor:pointer;
+
+}
+.error{
+  position: absolute;
+  width: 150px;
+  height: 50px;
+
+  /*border:none;*/
+  border-radius: 15px;
+  text-align: center;
+  border:2px solid rgba(141, 2, 0, 0.96);
+  /*box-shadow: 0 4px 8px 0 rgba(105, 16, 11, 0.68);*/
+
+}
+.error >p{
+  font-family: Lato;
+  margin-top:15px;
+  font-weight: bold;
+  color:rgba(141, 2, 0, 0.96);}
+.dir{
+  position: absolute;
+  left:300px;
+  top:900px;
+}
+#textarea{
+ height: 400px;
+}

@@ -58,6 +58,7 @@ textarea:active,:focus{
   background: #f1f1f1;
   border-radius: 15px;
 }
+
 section:active > input{
   outline: none;
   background-color: #ddd;

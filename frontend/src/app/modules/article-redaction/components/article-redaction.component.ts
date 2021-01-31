@@ -80,6 +80,7 @@ export class ArticleRedactionComponent {
         this.article.tags = [];
       }
       this.article.tags.push(tag);
+      this.tagName = null;
     }
   }   deleteTag(tagToDelete: Tag): void{
     this.article.tags.forEach(tag =>{

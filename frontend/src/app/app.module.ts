@@ -7,7 +7,6 @@ import {ArticleModule} from "./modules/article/article.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ArticleRedactionModule} from "./modules/article-redaction/article-redaction.module";
 import {HeaderModule} from "./modules/header/header.module";
-import {ForgotPasswordModule} from "./modules/forgot-password/forgot-password.module";
 import {LoginModule} from "./modules/login/login.module";
 import {ProfileModule} from "./modules/profile/profile.module";
 import {RegistrationModule} from "./modules/registration/registration.module";
@@ -17,7 +16,6 @@ import {RouterModule, Routes} from "@angular/router";
 import {ArticleComponent} from "./modules/article/components/article.component";
 import {ArticleRedactionComponent} from "./modules/article-redaction/components/article-redaction.component";
 import {HeaderComponent} from "./modules/header/components/header.component";
-import {ForgotPasswordComponent} from "./modules/forgot-password/components/forgot-password.component";
 import {LoginComponent} from "./modules/login/components/login.component";
 import {ProfileComponent} from "./modules/profile/components/profile.component";
 import {RegistrationComponent} from "./modules/registration/components/registration.component";
@@ -38,7 +36,6 @@ const appRoutes: Routes = [
   {path: 'article/:id', component: ArticleComponent},
   {path: 'article/:id/redact', component: ArticleRedactionComponent},
   {path: 'enter', component: HeaderComponent},
-  {path: 'forgot', component: ForgotPasswordComponent},
   {path: 'login', component: LoginComponent},
   {path: 'profile/:id', component: ProfileComponent},
   {path: 'create/article', component: AddArticleComponent},
@@ -56,7 +53,6 @@ const appRoutes: Routes = [
   imports: [
     ArticleModule,
     ArticleRedactionModule,
-    ForgotPasswordModule,
     LoginModule,
     ProfileModule,
     RegistrationModule,

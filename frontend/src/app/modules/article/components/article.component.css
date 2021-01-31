@@ -14,7 +14,7 @@
   flex-direction: row;
 }
 .horizont > img{
-  margin-left: 10%;
+  margin-left: 7%;
   margin-right: 10%;
 
   height: 80px;
@@ -46,7 +46,8 @@ h1{
 
 .status{
   color:green;
-  margin-left: 60px;
+  margin-left: 20px;
+  font-weight: 400;
 }
 
 .updated {
